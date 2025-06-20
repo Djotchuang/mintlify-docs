@@ -16,7 +16,11 @@
         "groups": [
           {
             "group": "Get Started",
-            "pages": ["index", "quickstart", "development"]
+            "pages": [
+              "index",
+              "gettingStarted/createAccount",
+              "gettingStarted/activateAccount"
+            ]
           },
           {
             "group": "Essentials",
