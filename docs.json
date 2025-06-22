@@ -18,21 +18,35 @@
             "tab": "Guides",
             "groups": [
               {
-                "group": "Get Started",
+                "group": "Getting Started",
                 "pages": [
                   "en/index",
-                  "en/getting-started/create-account",
-                  "en/getting-started/activate-account"
+                  "en/guides/getting-started/create-account",
+                  "en/guides/getting-started/activate-account",
+                  "en/guides/getting-started/set-fapshi-pin",
+                  "en/guides/getting-started/mobile-app"
                 ]
               },
               {
                 "group": "No-code Solutions",
                 "pages": [
-                  "en/no-code-solutions/payment-links",
-                  "en/no-code-solutions/products",
-                  "en/no-code-solutions/stores",
-                  "en/no-code-solutions/invoicing",
-                  "en/no-code-solutions/event-ticketing"
+                  "en/guides/no-code-solutions/payment-links",
+                  "en/guides/no-code-solutions/products",
+                  "en/guides/no-code-solutions/stores",
+                  "en/guides/no-code-solutions/invoicing",
+                  "en/guides/no-code-solutions/event-ticketing"
+                ]
+              },
+              {
+                "group": "Third-party Integrations",
+                "pages": ["en/guides/third-party-integrations/woocommerce"]
+              },
+              {
+                "group": "Managing Payments",
+                "pages": [
+                  "en/guides/managing-payments/balances",
+                  "en/guides/managing-payments/payouts",
+                  "en/guides/managing-payments/bulk-payments"
                 ]
               }
             ]
@@ -98,34 +112,48 @@
             "tab": "Guides",
             "groups": [
               {
-                "group": "Get Started",
+                "group": "Commencer",
                 "pages": [
                   "fr/index",
-                  "fr/getting-started/create-account",
-                  "fr/getting-started/activate-account"
+                  "fr/guides/getting-started/create-account",
+                  "fr/guides/getting-started/activate-account",
+                  "fr/guides/getting-started/set-fapshi-pin",
+                  "fr/guides/getting-started/mobile-app"
                 ]
               },
               {
-                "group": "No-code Solutions",
+                "group": "Solutions sans code",
                 "pages": [
-                  "fr/no-code-solutions/payment-links",
-                  "fr/no-code-solutions/products",
-                  "fr/no-code-solutions/stores",
-                  "fr/no-code-solutions/invoicing",
-                  "fr/no-code-solutions/event-ticketing"
+                  "fr/guides/no-code-solutions/payment-links",
+                  "fr/guides/no-code-solutions/products",
+                  "fr/guides/no-code-solutions/stores",
+                  "fr/guides/no-code-solutions/invoicing",
+                  "fr/guides/no-code-solutions/event-ticketing"
+                ]
+              },
+              {
+                "group": "Intégrations tierces",
+                "pages": ["fr/guides/third-party-integrations/woocommerce"]
+              },
+              {
+                "group": "Gestion des paiements",
+                "pages": [
+                  "fr/guides/managing-payments/balances",
+                  "fr/guides/managing-payments/payouts",
+                  "fr/guides/managing-payments/bulk-payments"
                 ]
               }
             ]
           },
           {
-            "tab": "API Reference",
+            "tab": "Reference API",
             "groups": [
               {
-                "group": "API Documentation",
+                "group": "Documentation API",
                 "pages": ["fr/api-reference/introduction"]
               },
               {
-                "group": "Endpoint Examples",
+                "group": "Exemples des Endpoints",
                 "pages": [
                   "fr/api-reference/endpoint/get",
                   "fr/api-reference/endpoint/create",
