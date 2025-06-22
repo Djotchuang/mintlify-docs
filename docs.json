@@ -10,79 +10,168 @@
   },
   "favicon": { "light": "/favicon.svg", "dark": "/favicon-dark.svg" },
   "navigation": {
-    "tabs": [
+    "languages": [
       {
-        "tab": "Guides",
-        "groups": [
+        "language": "en",
+        "tabs": [
           {
-            "group": "Get Started",
-            "pages": [
-              "index",
-              "gettingStarted/createAccount",
-              "gettingStarted/activateAccount"
+            "tab": "Guides",
+            "groups": [
+              {
+                "group": "Get Started",
+                "pages": [
+                  "en/index",
+                  "en/getting-started/create-account",
+                  "en/getting-started/activate-account"
+                ]
+              },
+              {
+                "group": "No-code Solutions",
+                "pages": [
+                  "en/no-code-solutions/payment-links",
+                  "en/no-code-solutions/products",
+                  "en/no-code-solutions/stores",
+                  "en/no-code-solutions/invoicing",
+                  "en/no-code-solutions/event-ticketing"
+                ]
+              }
             ]
           },
           {
-            "group": "Essentials",
-            "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/settings",
-              "essentials/navigation",
-              "essentials/reusable-snippets"
+            "tab": "API Reference",
+            "groups": [
+              {
+                "group": "API Documentation",
+                "pages": ["en/api-reference/introduction"]
+              },
+              {
+                "group": "Endpoint Examples",
+                "pages": [
+                  "en/api-reference/endpoint/get",
+                  "en/api-reference/endpoint/create",
+                  "en/api-reference/endpoint/delete",
+                  "en/api-reference/endpoint/webhook"
+                ]
+              }
             ]
           }
-        ]
+        ],
+        "global": {
+          "dropdowns": [
+            {
+              "dropdown": "Help & Support",
+              "href": "https://fapshi.com/en/help-and-support",
+              "icon": "handshake",
+              "description": "Check our Knowledge Base."
+            },
+            {
+              "dropdown": "Newsroom",
+              "href": "https://fapshi.com/en/newsroom",
+              "icon": "newspaper",
+              "description": "Stay updated with our latest news."
+            },
+            {
+              "dropdown": "Suggest a Feature",
+              "href": "https://fapshi.com/en/suggest-feature",
+              "icon": "pen",
+              "description": "Share your ideas for new features."
+            },
+            {
+              "dropdown": "Developer  Community",
+              "href": "https://fapshicommunity.slack.com/join/shared_invite/zt-1dz7tl3kj-Wl_mdNxiiCI31i8mrVIrtQ#/shared-invite/email",
+              "icon": "slack",
+              "description": "Join our community of developers."
+            },
+            {
+              "dropdown": "WhatsApp Group",
+              "href": "https://chat.whatsapp.com/FQiOmomCTCKLdyaWlmvHrd",
+              "icon": "whatsapp",
+              "description": "Join our WhatsApp group."
+            }
+          ]
+        }
       },
       {
-        "tab": "API Reference",
-        "groups": [
+        "language": "fr",
+        "tabs": [
           {
-            "group": "API Documentation",
-            "pages": ["api-reference/introduction"]
+            "tab": "Guides",
+            "groups": [
+              {
+                "group": "Get Started",
+                "pages": [
+                  "fr/index",
+                  "fr/getting-started/create-account",
+                  "fr/getting-started/activate-account"
+                ]
+              },
+              {
+                "group": "No-code Solutions",
+                "pages": [
+                  "fr/no-code-solutions/payment-links",
+                  "fr/no-code-solutions/products",
+                  "fr/no-code-solutions/stores",
+                  "fr/no-code-solutions/invoicing",
+                  "fr/no-code-solutions/event-ticketing"
+                ]
+              }
+            ]
           },
           {
-            "group": "Endpoint Examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+            "tab": "API Reference",
+            "groups": [
+              {
+                "group": "API Documentation",
+                "pages": ["fr/api-reference/introduction"]
+              },
+              {
+                "group": "Endpoint Examples",
+                "pages": [
+                  "fr/api-reference/endpoint/get",
+                  "fr/api-reference/endpoint/create",
+                  "fr/api-reference/endpoint/delete",
+                  "fr/api-reference/endpoint/webhook"
+                ]
+              }
             ]
           }
-        ]
-      }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Help & Support",
-          "href": "https://fapshi.com/help-and-support",
-          "icon": "handshake"
-        },
-        {
-          "anchor": "Newsroom",
-          "href": "https://fapshi.com/newsroom",
-          "icon": "newspaper"
-        },
-        {
-          "anchor": "Suggest a Feature",
-          "href": "https://fapshi.com/suggest-feature",
-          "icon": "pen"
-        },
-        {
-          "anchor": "Developer  Community",
-          "href": "https://fapshicommunity.slack.com/join/shared_invite/zt-1dz7tl3kj-Wl_mdNxiiCI31i8mrVIrtQ#/shared-invite/email",
-          "icon": "slack"
-        },
-        {
-          "anchor": "WhatsApp Group",
-          "href": "https://chat.whatsapp.com/FQiOmomCTCKLdyaWlmvHrd",
-          "icon": "whatsapp"
+        ],
+        "global": {
+          "dropdowns": [
+            {
+              "dropdown": "Aide et Support",
+              "href": "https://fapshi.com/fr/aide-et-support",
+              "icon": "handshake",
+              "description": "Consultez notre base de connaissances."
+            },
+            {
+              "dropdown": "Redaction",
+              "href": "https://fapshi.com/fr/redaction",
+              "icon": "newspaper",
+              "description": "Restez informé de nos dernières nouvelles."
+            },
+            {
+              "dropdown": "Proposer une fonctionnalité",
+              "href": "https://fapshi.com/fr/proposer-fonctionnalite",
+              "icon": "pen",
+              "description": "Partagez vos idées pour de nouvelles fonctionnalités."
+            },
+            {
+              "dropdown": "Communauté de développeurs",
+              "href": "https://fapshicommunity.slack.com/join/shared_invite/zt-1dz7tl3kj-Wl_mdNxiiCI31i8mrVIrtQ#/shared-invite/email",
+              "icon": "slack",
+              "description": "Rejoignez notre communauté de développeurs."
+            },
+            {
+              "dropdown": "Groupe WhatsApp",
+              "href": "https://chat.whatsapp.com/FQiOmomCTCKLdyaWlmvHrd",
+              "icon": "whatsapp",
+              "description": "Rejoignez notre groupe WhatsApp."
+            }
+          ]
         }
-      ]
-    }
+      }
+    ]
   },
   "logo": {
     "light": "/logo/light.svg",
