@@ -1,59 +1,33 @@
 ---
 title: 'Products'
-description: 'Add image, video, and other HTML elements'
-icon: 'image'
+description: 'Create and sell products easily using Fapshi’s payment link system. Manage your listings, share links, and collect payments directly on the platform.'
+keywords: ['fapshi products', 'sell online', 'fapshi product link', 'payment link store', 'create product', 'product checkout', 'fapshi ecommerce']
+icon: 'bag-shopping'
 ---
 
-<img
-  style={{ borderRadius: '0.5rem' }}
-  src="https://mintlify-assets.b-cdn.net/bigbend.jpg"
-/>
+---
 
-## Image
+A product is anything you want to sell or be paid for; it could be electronics, fashion items, books, event tickets, services, etc. Fapshi gives you the possibility to create products and sell them through a payment link.
 
-### Using Markdown
+<Info>All payments are made directly on the platform, and can be seen on your dashboard. You can withdraw your funds at anytime through a [Payout](/en/guides/managing-payments/payouts).</Info>
 
-The [markdown syntax](https://www.markdownguide.org/basic-syntax/#images) lets you add images using the following code
+## How to Create your Product
 
-```md
-![title](/path/image.jpg)
-```
+**Step 1**: Log into your dashboard and navigate to **More > Store > Products**.
 
-Note that the image file size must be less than 5MB. Otherwise, we recommend hosting on a service like [Cloudinary](https://cloudinary.com/) or [S3](https://aws.amazon.com/s3/). You can then use that URL and embed.
+**Step 2**: Click the "Add a Product" button at the top right.
 
-### Using Embeds
+**Step 3**: Fill in the required details; make sure to upload a picture of your product. You can also add more pictures of the product by uploading to the product gallery.
 
-To get more customizability with images, you can also use [embeds](/writing-content/embed) to add images
+<Note>On Fapshi, you cannot post products whose prices are less than **500 FCFA**. Also, the following product names are forbidden, i.e., you can't give your products these names: **"fapshi", "pending", "invoice", "donation", "payment link"**.</Note>
 
-```html
-<img height="200" src="/path/image.jpg" />
-```
+**Step 4**: Your product will be created; you can see its details on the Products page on your dashboard, from where you can copy and share its link.
 
-## Embeds and HTML elements
+<Info>You can add your products to your store (a unified view for your products). You can also preview your products, edit, or delete them.</Info>
 
-<iframe
-  width="560"
-  height="315"
-  src="https://www.youtube.com/embed/4KzFe50RQkQ"
-  title="YouTube video player"
-  frameBorder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowFullScreen
-  style={{ width: '100%', borderRadius: '0.5rem' }}
-></iframe>
+**Step 5**: When your customers click on the product link, the product view and payment portal will be displayed from where they can pay.
 
-<br />
+**Step 6**: When your client pays, he/she will receive a payment receipt through his/her email and can download the receipt.
 
-<Tip>
+<Info>We charge a fee for product purchases. Visit our [Pricing Calculator](https://fapshi.com/en/pricing#pricing-calculator) to see how much you'll be charged for the amount paid.</Info>
 
-Mintlify supports [HTML tags in Markdown](https://www.markdownguide.org/basic-syntax/#html). This is helpful if you prefer HTML tags to Markdown syntax, and lets you create documentation with infinite flexibility.
-
-</Tip>
-
-### iFrames
-
-Loads another HTML page within the document. Most commonly used for embedding videos.
-
-```html
-<iframe src="https://www.youtube.com/embed/4KzFe50RQkQ"> </iframe>
-```

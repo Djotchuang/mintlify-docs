@@ -1,88 +1,52 @@
 ---
-title: 'Markdown Syntax'
-description: 'Text, title, and styling in standard markdown'
-icon: 'text-size'
+title: 'Facturation'
+description: 'Créez des factures simples ou avancées avec Fapshi et envoyez-les à vos clients par e-mail. Encaissez les paiements en ligne et suivez l’état de vos factures.'
+keywords: ['facture fapshi', 'facturation en ligne', 'envoyer une facture', 'facture simple', 'facture avancée', 'paiement par facture', 'tableau de bord fapshi']
+icon: 'file-invoice'
 ---
 
-## Titles
+---
 
-Best used for section headers.
+Fapshi permet à ses utilisateurs de créer des factures pour leurs clients ; les factures servent de preuve de paiement. Vous pouvez créer une **facture simple** indiquant le montant à payer et une note pour le client, ou une **facture avancée** incluant les articles, leurs quantités, prix et total.
 
-```md
-## Titles
-```
+La création de l’une ou l’autre générera une facture qui sera automatiquement envoyée à l’email de votre client.
 
-### Subtitles
+## Comment créer une facture simple
 
-Best use to subsection headers.
+Une facture simple permet à vous et à votre client d’avoir une preuve de paiement. Voici comment la créer :
 
-```md
-### Subtitles
-```
+**Étape 1** : Connectez-vous à votre tableau de bord et accédez à **Plus > Paiements > Factures**.
 
-<Tip>
+**Étape 2** : Cliquez sur le bouton "Créer une facture" en haut à droite et sélectionnez "Facture simple".
 
-Each **title** and **subtitle** creates an anchor and also shows up on the table of contents on the right.
+**Étape 3** : Remplissez les champs requis, vous pouvez laisser le champ de note vide si vous n’avez pas besoin de laisser un message à votre client. Si vous souhaitez ajouter plus de détails, comme des articles et leurs prix, créez plutôt une [Facture Avancée](#comment-créer-une-facture-avancée).
 
-</Tip>
+![Facture simple](/images/invoicing/simple-invoice.png)
 
-## Text Formatting
+**Étape 4** : Votre facture sera générée et envoyée à l’email du client.
 
-We support most markdown formatting. Simply add `**`, `_`, or `~` around text to format it.
+**Étape 5** : Lorsque votre client clique sur le lien de paiement dans la facture, la page de paiement Fapshi s'affichera pour lui permettre de payer.
 
-| Style         | How to write it   | Result          |
-| ------------- | ----------------- | --------------- |
-| Bold          | `**bold**`        | **bold**        |
-| Italic        | `_italic_`        | _italic_        |
-| Strikethrough | `~strikethrough~` | ~strikethrough~ |
+**Étape 6** : Une fois le paiement effectué, votre client recevra un reçu de paiement par email et pourra le télécharger.
 
-You can combine these. For example, write `**_bold and italic_**` to get **_bold and italic_** text.
+<Tip>Nous avons implémenté des actions pour vous aider à gérer vos factures sur Fapshi. La page des factures sur votre tableau de bord affiche une liste de toutes les factures créées, chacune avec un bouton d'action à l'extrême droite. Cliquez dessus et explorez les options !</Tip>
 
-You need to use HTML to write superscript and subscript text. That is, add `<sup>` or `<sub>` around your text.
+## Comment créer une facture avancée
 
-| Text Size   | How to write it          | Result                 |
-| ----------- | ------------------------ | ---------------------- |
-| Superscript | `<sup>superscript</sup>` | <sup>superscript</sup> |
-| Subscript   | `<sub>subscript</sub>`   | <sub>subscript</sub>   |
+Avec les factures avancées, vous pouvez inclure autant d’articles que nécessaire, leurs quantités et prix unitaires. En résumé, la facture avancée donne plus d’informations au client. Voici comment en créer une :
 
-## Linking to Pages
+**Étape 1** : Connectez-vous à votre tableau de bord et accédez à **Plus > Paiements > Factures**.
 
-You can add a link by wrapping text in `[]()`. You would write `[link to google](https://google.com)` to [link to google](https://google.com).
+**Étape 2** : Cliquez sur le bouton "Créer une facture" en haut à droite et sélectionnez "Facture avancée".
 
-Links to pages in your docs need to be root-relative. Basically, you should include the entire folder path. For example, `[link to text](/writing-content/text)` links to the page "Text" in our components section.
+**Étape 3** : Remplissez les champs requis, ajoutez et enregistrez autant d’articles que nécessaire pour la facture. Vous pouvez laisser le champ de note vide si vous n’avez pas besoin de laisser un message à votre client. Si ce n’est pas nécessaire d’inclure des articles, créez plutôt une [Facture Simple](#comment-créer-une-facture-simple).
 
-Relative links like `[link to text](../text)` will open slower because we cannot optimize them as easily.
+![Facture avancée](/images/invoicing/advanced-invoice.png)
 
-## Blockquotes
+**Étape 4** : Votre facture sera générée et envoyée à l’email du client.
 
-### Singleline
+**Étape 5** : Lorsque votre client clique sur le lien de paiement dans la facture, la page de paiement Fapshi s'affichera pour lui permettre de payer.
 
-To create a blockquote, add a `>` in front of a paragraph.
+**Étape 6** : Une fois le paiement effectué, votre client recevra un reçu de paiement par email et pourra le télécharger.
 
-> Dorothy followed her through many of the beautiful rooms in her castle.
-
-```md
-> Dorothy followed her through many of the beautiful rooms in her castle.
-```
-
-### Multiline
-
-> Dorothy followed her through many of the beautiful rooms in her castle.
->
-> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
-
-```md
-> Dorothy followed her through many of the beautiful rooms in her castle.
->
-> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
-```
-
-### LaTeX
-
-Mintlify supports [LaTeX](https://www.latex-project.org) through the Latex component.
-
-<Latex>8 x (vk x H1 - H2) = (0,1)</Latex>
-
-```md
-<Latex>8 x (vk x H1 - H2) = (0,1)</Latex>
-```
+<Tip>Si une facture a été réglée, vous ne pouvez plus la modifier ni envoyer un rappel. Cependant, vous pouvez la dupliquer ou la renvoyer. Consultez ces actions, leur fonctionnement, et quand les utiliser dans notre [Centre d’aide et support](https://fapshi.com/fr/aide-et-support).</Tip>

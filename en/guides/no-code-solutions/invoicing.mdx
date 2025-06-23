@@ -1,88 +1,52 @@
 ---
 title: 'Invoicing'
-description: 'Text, title, and styling in standard markdown'
-icon: 'text-size'
+description: 'Create simple or advanced invoices with Fapshi and send them to your clients via email. Collect payments online, track invoice status, and automate receipts.'
+keywords: ['fapshi invoice', 'online invoicing', 'send invoice', 'simple invoice', 'advanced invoice', 'invoice payment', 'fapshi dashboard']
+icon: 'file-invoice'
 ---
 
-## Titles
+---
 
-Best used for section headers.
+Fapshi permits its users to create invoices for their clients; invoices serve as proof of payment. You can create a **simple invoice** showing the amount to be paid and a note for the client, or an **advanced invoice** including items, their quantities, prices, and total.
 
-```md
-## Titles
-```
+Creating any of these will generate an invoice that will be automatically sent to your client's email.
 
-### Subtitles
+## How to Create a Simple Invoice
 
-Best use to subsection headers.
+A simple invoice permits both you and your client to have proof of payment. Here's how you would create one:
 
-```md
-### Subtitles
-```
+**Step 1**: Log into your dashboard and navigate to **More > Payments > Invoices**.
 
-<Tip>
+**Step 2**: Click the "Create an invoice" button at the top right and select "Simple invoice".
 
-Each **title** and **subtitle** creates an anchor and also shows up on the table of contents on the right.
+**Step 3**: Fill in the required details, you can leave the note field empty if you don't see the need to leave your client a message. Should you need to provide more details, such as the items, their prices, etc, create an [Advanced Invoice](#how-to-create-an-advanced-invoice) instead.
 
-</Tip>
+![Simple invoice](/images/invoicing/simple-invoice.png)
 
-## Text Formatting
+**Step 4**: Your invoice will be generated and sent to the client's email.
 
-We support most markdown formatting. Simply add `**`, `_`, or `~` around text to format it.
+**Step 5**: When your customers click on the payment link on the invoice, the Fapshi payment page will be displayed for them to pay.
 
-| Style         | How to write it   | Result          |
-| ------------- | ----------------- | --------------- |
-| Bold          | `**bold**`        | **bold**        |
-| Italic        | `_italic_`        | _italic_        |
-| Strikethrough | `~strikethrough~` | ~strikethrough~ |
+**Step 6**: When your client pays, he/she will receive a payment receipt through his/her email and can download the receipt.
 
-You can combine these. For example, write `**_bold and italic_**` to get **_bold and italic_** text.
+<Tip>We have implemented action items to help you handle invoicing on Fapshi. The invoice page on your dashboard displays a list of all invoices you've created, each having an action button at the extreme right. Click on it and explore the options!</Tip>
 
-You need to use HTML to write superscript and subscript text. That is, add `<sup>` or `<sub>` around your text.
+## How to Create an Advanced Invoice
 
-| Text Size   | How to write it          | Result                 |
-| ----------- | ------------------------ | ---------------------- |
-| Superscript | `<sup>superscript</sup>` | <sup>superscript</sup> |
-| Subscript   | `<sub>subscript</sub>`   | <sub>subscript</sub>   |
+With advanced invoices, you can include as many items as necessary, their quantities and unit prices to the invoice. Basically, the advanced invoice conveys more information to the client. Below are the steps to create one:
 
-## Linking to Pages
+**Step 1**: Log into your dashboard and navigate to **More > Payments > Invoices**.
 
-You can add a link by wrapping text in `[]()`. You would write `[link to google](https://google.com)` to [link to google](https://google.com).
+**Step 2**: Click the "Create an invoice" button at the top right and select "Advanced invoice".
 
-Links to pages in your docs need to be root-relative. Basically, you should include the entire folder path. For example, `[link to text](/writing-content/text)` links to the page "Text" in our components section.
+**Step 3**: Fill in the required details, add and save as many items as is needed for the invoice. You can leave the note field empty, if you don't see the need to leave your client a message. If it is not necesary to include items in your invoice, create a [Simple Invoice](#how-to-create-a-simple-invoice) instead.
 
-Relative links like `[link to text](../text)` will open slower because we cannot optimize them as easily.
+![Advanced invoice](/images/invoicing/advanced-invoice.png)
 
-## Blockquotes
+**Step 4**: Your invoice will be generated and sent to the client's email.
 
-### Singleline
+**Step 5**: When your customers click on the payment link on the invoice, the Fapshi payment page will be displayed for them to pay.
 
-To create a blockquote, add a `>` in front of a paragraph.
+**Step 6**: When your client pays, he/she will receive a payment receipt through his/her email and can download the receipt.
 
-> Dorothy followed her through many of the beautiful rooms in her castle.
-
-```md
-> Dorothy followed her through many of the beautiful rooms in her castle.
-```
-
-### Multiline
-
-> Dorothy followed her through many of the beautiful rooms in her castle.
->
-> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
-
-```md
-> Dorothy followed her through many of the beautiful rooms in her castle.
->
-> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
-```
-
-### LaTeX
-
-Mintlify supports [LaTeX](https://www.latex-project.org) through the Latex component.
-
-<Latex>8 x (vk x H1 - H2) = (0,1)</Latex>
-
-```md
-<Latex>8 x (vk x H1 - H2) = (0,1)</Latex>
-```
+<Tip>If an invoice has been paid for, you cannot edit or send a reminder for it. However, you can duplicate or resend it. Check out these actions, how they work, and when to use them in the [Help & Support Center](https://fapshi.com/en/help-and-support).</Tip>

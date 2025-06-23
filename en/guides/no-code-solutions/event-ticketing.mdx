@@ -1,87 +1,70 @@
 ---
 title: 'Event Ticketing'
-description: 'The event ticketing field in docs.json defines the pages that go in the event ticketing menu'
-icon: 'map'
+description: 'Create events, track bookings, and sell event tickets and registration online through Fapshi'
+keywords: ["event ticketing", "iventily", "fapshi events", "online event booking", "create event", "book tickets online", "sell event tickets", "event link", "fapshi event", "buy tickets with mobile money"]
+icon: 'ticket'
 ---
 
-The event ticketing menu is the list of links on every website.
+---
 
-You will likely update `docs.json` every time you add a new page. Pages do not show up automatically.
+Fapshi empowers you to sell your event tickets online via a link that shows your event details and ticket categories. Interested persons can select a ticket category and quantity and pay directly online. They'll receive a receipt of payment, while you'll have access to all bookings directly on your Fapshi dashboard or app.
 
-## Navigation syntax
+## How to Create an Event
 
-Our navigation syntax is recursive which means you can make nested navigation groups. You don't need to include `.mdx` in page names.
+**Step 1:** Log into your dashboard and navigate to **Events**.
 
-<CodeGroup>
+**Step 2:** Click the "Create an event" button at the top right.
 
-```json Regular Navigation
-"navigation": {
-  "tabs": [
-    {
-      "tab": "Docs",
-      "groups": [
-        {
-          "group": "Getting Started",
-          "pages": ["quickstart"]
-        }
-      ]
-    }
-  ]
-}
-```
+**Step 3:** Fill in the required details and confirm. You have to add the different ticket categories and their prices. Insert how much you want to receive in the "Income field" (Revenue field on the Mobile App) and the amount for the category will be generated automatically for you. Save the spot category to add another or proceed.
 
-```json Nested Navigation
-"navigation": {
-  "tabs": [
-    {
-      "tab": "Docs",
-      "groups": [
-        {
-          "group": "Getting Started",
-          "pages": [
-            "quickstart",
-            {
-              "group": "Nested Reference Pages",
-              "pages": ["nested-reference-page"]
-            }
-          ]
-        }
-      ]
-    }
-  ]
-}
-```
+<Tip>Even though it's optional, we recommend adding the event flyer, date, time, and location. These make the event page more UI friendly and informational.</Tip>
 
-</CodeGroup>
+![Event creation](/images/iventily/create.png)
 
-## Folders
+**Step 4:** Your event link & code will be generated and you can copy and share them!
 
-Simply put your MDX files in folders and update the paths in `docs.json`.
+<Info>
+You can share your event in either of two ways:
 
-For example, to have a page at `https://yoursite.com/your-folder/your-page` you would make a folder called `your-folder` containing an MDX file called `your-page.mdx`.
+1. Copy the event code and ask interested persons to search for that code on [iventily.com](https://iventily.com) or 
+
+2. Copy and share the event link (direct link to the page on [iventily.com](https://iventily.com)). You could as well put both the event code with instructions and the event link on your event flyer so clients can book without having to contact you directly.
+</Info>
+
+## How to Book Tickets
+
+If you shared the code to the event, it suffices to search that code in the search box on [iventily.com](https://iventily.com). Otherwise, if you have the link, you can click on it and it will open the event page.
+
+![Event page](/images/iventily/link.png)
+
+The booking process can be divided into three simple steps:
+
+### Step 1: Select the ticket category
+
+Select the ticket category and insert the quantity of tickets you want to buy.
+
+### Step 2: Fill in your information
+
+Fill in your Name, Email, and Payment number **(This is the number of the MTN MoMo or Orange Money account the money will be deducted from)**.
 
 <Warning>
+Ensure you have enough money in your account to pay for the tickets, else, the transaction will fail.
 
-You cannot use `api` for the name of a folder unless you nest it inside another folder. Mintlify uses Next.js which reserves the top-level `api` folder for internal server calls. A folder name such as `api-reference` would be accepted.
-
+Also, you must select a ticket (spot) category to proceed.
 </Warning>
 
-```json Navigation With Folder
-"navigation": {
-  "tabs": [
-    {
-      "tab": "Docs",
-      "groups": [
-        {
-          "group": "Group Name",
-          "pages": ["your-folder/your-page"]
-        }
-      ]
-    }
-  ]
-}
-```
+### Step 3: Payment
 
-## Hidden Pages
+Confirm payment by tapping the **Book spot** button. Once you do, a popup will appear on your phone to fill in your MoMo or OM PIN. Do so to confirm payment.
 
-MDX files not included in `docs.json` will not show up in the sidebar but are accessible through the search bar and by linking directly to them.
+<Info>If the transaction is successful, a receipt of payment will be sent to your email which will serve as your digital ticket. You can download it and keep for reference.</Info>
+
+## How to Check Bookings
+
+All transactions (failed or successful) will appear on your Fapshi dashboard. Fapshi provides you with out-of-the-box booking management so that you can focus on the event proper. You can download all the bookings as **PDF** or **Excel sheet** and use this for check-ins.
+
+![Event bookings](/images/iventily/list.png)
+
+<Info>
+If you're using the mobile app, the steps are the same. Open the payment links tab, select **Event tickets** or tap **Event tickets** on the home screen and follow the same steps.
+</Info>

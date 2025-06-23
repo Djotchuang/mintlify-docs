@@ -1,87 +1,70 @@
 ---
-title: 'Event Ticketing'
-description: 'The event ticketing field in docs.json defines the pages that go in the event ticketing menu'
-icon: 'map'
+title: 'Billetterie d’événements'
+description: 'Créez des événements, suivez les réservations et vendez des billets ou inscriptions en ligne avec Fapshi'
+keywords: ["billetterie événementielle", "iventily", "événements fapshi", "réservation événement en ligne", "créer un événement", "acheter billets en ligne", "vendre billets", "lien d'événement", "événement fapshi", "acheter billet avec mobile money"]
+icon: 'ticket'
 ---
 
-The event ticketing menu is the list of links on every website.
+---
 
-You will likely update `docs.json` every time you add a new page. Pages do not show up automatically.
+Fapshi vous permet de vendre vos billets d’événements en ligne via un lien affichant les détails de l’événement et les catégories de billets disponibles. Les personnes intéressées peuvent choisir une catégorie de billet, indiquer la quantité souhaitée et payer directement en ligne. Elles recevront un reçu de paiement, et vous pourrez consulter toutes les réservations depuis votre tableau de bord Fapshi ou l’application mobile.
 
-## Navigation syntax
+## Comment créer un événement
 
-Our navigation syntax is recursive which means you can make nested navigation groups. You don't need to include `.mdx` in page names.
+**Étape 1 :** Connectez-vous à votre tableau de bord et accédez à **Événements**.
 
-<CodeGroup>
+**Étape 2 :** Cliquez sur le bouton "Créer un événement" en haut à droite.
 
-```json Regular Navigation
-"navigation": {
-  "tabs": [
-    {
-      "tab": "Docs",
-      "groups": [
-        {
-          "group": "Getting Started",
-          "pages": ["quickstart"]
-        }
-      ]
-    }
-  ]
-}
-```
+**Étape 3 :** Remplissez les champs obligatoires et validez. Vous devrez ajouter les différentes catégories de billets et leurs prix. Entrez le montant que vous souhaitez recevoir dans le champ "Revenu" (champ "Revenu" sur l’application mobile) et le montant de la catégorie sera généré automatiquement pour vous. Enregistrez la catégorie pour en ajouter une autre ou passez à l’étape suivante.
 
-```json Nested Navigation
-"navigation": {
-  "tabs": [
-    {
-      "tab": "Docs",
-      "groups": [
-        {
-          "group": "Getting Started",
-          "pages": [
-            "quickstart",
-            {
-              "group": "Nested Reference Pages",
-              "pages": ["nested-reference-page"]
-            }
-          ]
-        }
-      ]
-    }
-  ]
-}
-```
+<Tip>Bien que cela soit facultatif, nous vous recommandons d’ajouter l’affiche de l’événement, la date, l’heure et le lieu. Ces informations rendent la page de l’événement plus conviviale et complète.</Tip>
 
-</CodeGroup>
+![Création d’un événement](/images/iventily/create.png)
 
-## Folders
+**Étape 4 :** Votre lien d’événement et votre code seront générés, vous pourrez les copier et les partager !
 
-Simply put your MDX files in folders and update the paths in `docs.json`.
+<Info>
+Vous pouvez partager votre événement de deux manières :
 
-For example, to have a page at `https://yoursite.com/your-folder/your-page` you would make a folder called `your-folder` containing an MDX file called `your-page.mdx`.
+1. Copier le code de l’événement et demander aux intéressés de le rechercher sur [iventily.com](https://iventily.com), ou
+
+2. Copier et partager le lien direct de l’événement (lien vers la page sur [iventily.com](https://iventily.com)). Vous pouvez également afficher à la fois le code et le lien sur votre affiche pour permettre aux clients de réserver facilement.
+</Info>
+
+## Comment réserver des billets
+
+Si vous avez partagé le code de l’événement, il suffit de le rechercher dans la barre de recherche sur [iventily.com](https://iventily.com). Sinon, cliquez directement sur le lien de l’événement.
+
+![Page d’événement](/images/iventily/link.png)
+
+La réservation se fait en trois étapes simples :
+
+### Étape 1 : Sélectionnez une catégorie de billet
+
+Choisissez la catégorie de billet et indiquez la quantité souhaitée.
+
+### Étape 2 : Remplissez vos informations
+
+Renseignez votre nom, votre adresse e-mail, et votre numéro de paiement **(le numéro MoMo ou Orange Money à débiter)**.
 
 <Warning>
+Assurez-vous que votre compte dispose des fonds nécessaires pour effectuer le paiement, sinon la transaction échouera.
 
-You cannot use `api` for the name of a folder unless you nest it inside another folder. Mintlify uses Next.js which reserves the top-level `api` folder for internal server calls. A folder name such as `api-reference` would be accepted.
-
+Vous devez impérativement choisir une catégorie de billet pour continuer.
 </Warning>
 
-```json Navigation With Folder
-"navigation": {
-  "tabs": [
-    {
-      "tab": "Docs",
-      "groups": [
-        {
-          "group": "Group Name",
-          "pages": ["your-folder/your-page"]
-        }
-      ]
-    }
-  ]
-}
-```
+### Étape 3 : Paiement
 
-## Hidden Pages
+Confirmez le paiement en cliquant sur **Réserver**. Une fenêtre apparaîtra sur votre téléphone pour que vous saisissiez votre code PIN MoMo ou OM. Faites-le pour confirmer le paiement.
 
-MDX files not included in `docs.json` will not show up in the sidebar but are accessible through the search bar and by linking directly to them.
+<Info>Si la transaction est réussie, un reçu vous sera envoyé par e-mail. Ce reçu servira de billet numérique. Vous pouvez le télécharger pour l’enregistrer.</Info>
+
+## Comment consulter les réservations
+
+Toutes les transactions (réussies ou échouées) apparaîtront sur votre tableau de bord Fapshi. Fapshi vous offre une gestion intégrée des réservations afin que vous puissiez vous concentrer sur l’organisation de l’événement. Vous pouvez télécharger toutes les réservations en **PDF** ou en **fichier Excel** pour les utiliser lors des check-ins.
+
+![Liste des réservations](/images/iventily/list.png)
+
+<Info>
+Si vous utilisez l’application mobile, les étapes sont les mêmes. Ouvrez l’onglet des liens de paiement, sélectionnez **Billets d’événement** ou appuyez sur **Billets d’événement** depuis la page d’accueil, puis suivez les mêmes étapes.
+</Info>

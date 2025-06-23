@@ -1,37 +1,106 @@
 ---
-title: 'Code Blocks'
-description: 'Display inline code and code blocks'
-icon: 'code'
+title: 'Liens de Paiement'
+description: 'Que sont les liens de paiement et comment les utiliser ?'
+keywords: ['liens de paiement', 'lien de don', 'paiement simple', 'paiement varié', 'accepter paiements', 'paiement en ligne']
+icon: 'square-arrow-up-right'
 ---
 
-## Basic
+---
 
-### Inline Code
+Pas besoin d’avoir un site web pour commencer à vendre en ligne ! Il vous suffit de créer un lien de paiement Fapshi et de l’envoyer à vos clients pour recevoir instantanément votre argent. Fapshi vous permet actuellement de créer des liens de paiement simples, des liens de don et des liens variés. Chacun de ces liens a des cas d’usage spécifiques. Consultez la section [Comment choisir le bon lien](#comment-choisir-le-bon-lien) ci-dessous pour plus de détails :
 
-To denote a `word` or `phrase` as code, enclose it in backticks (`).
+## Lien de Don
 
-```
-To denote a `word` or `phrase` as code, enclose it in backticks (`).
-```
+Parfait pour les dons, les campagnes de financement participatif, les contributions de groupe, les njangi, et tout autre paiement impliquant plusieurs personnes.
 
-### Code Block
+### Comment créer un lien de don
 
-Use [fenced code blocks](https://www.markdownguide.org/extended-syntax/#fenced-code-blocks) by enclosing code in three backticks and follow the leading ticks with the programming language of your snippet to get syntax highlighting. Optionally, you can also write the name of your code after the programming language.
+**Étape 1 :** Connectez-vous à votre tableau de bord et allez dans **Plus > Paiements > Lien de Paiement**.
 
-```java HelloWorld.java
-class HelloWorld {
-    public static void main(String[] args) {
-        System.out.println("Hello, World!");
-    }
-}
-```
+**Étape 2 :** Cliquez sur le bouton **"Créer un lien"** en haut à droite et sélectionnez **"Lien de don"**.
 
-````md
-```java HelloWorld.java
-class HelloWorld {
-    public static void main(String[] args) {
-        System.out.println("Hello, World!");
-    }
-}
-```
-````
+**Étape 3 :** Remplissez les informations requises ; vous pouvez définir un montant fixe ou choisir l’option **"laisser le donateur décider"**. Vous pouvez également définir un montant minimum.
+
+<Info>Si vous sélectionnez l’option **"Afficher les dons"**, les donateurs verront les dons précédents avec les montants et les dates.</Info>
+
+![Création d’un lien de don](/images/payment-links/donation.png)
+
+**Étape 4 :** Le lien sera généré, copiez-le et partagez-le !
+
+**Étape 5 :** Quand quelqu’un clique sur le lien, la page de paiement Fapshi s’affiche pour procéder au paiement.
+
+**Étape 6 :** Après le paiement, un reçu sera envoyé à l’e-mail du payeur, avec la possibilité de le télécharger.
+
+<Info>
+Sur l’application mobile, les options sont identiques. Allez dans l’onglet **Liens de paiement**, sélectionnez **Collecter des dons**, et suivez les mêmes étapes.
+</Info>
+
+## Lien de Paiement Simple
+
+Idéal pour les paiements uniques, les abonnements à prix fixe, les frais de webinaire, etc.
+
+### Comment créer un lien de paiement simple
+
+**Étape 1 :** Connectez-vous à votre tableau de bord et allez dans **Plus > Paiements > Lien de Paiement**.
+
+**Étape 2 :** Cliquez sur le bouton **"Créer un lien"** et sélectionnez **"Lien simple"**.
+
+**Étape 3 :** Remplissez les informations requises ; un montant fixe est obligatoire.
+
+<Info>Pour collecter des contributions de groupe, créez plutôt un [lien de don](#lien-de-don). Pour plusieurs montants fixes, créez un [lien varié](#lien-de-paiement-varié).</Info>
+
+![Création d’un lien simple](/images/payment-links/simple-link.png)
+
+**Étape 4 :** Le lien sera généré, copiez-le et partagez-le.
+
+**Étape 5 :** Quand le client clique sur le lien, la page de paiement s’ouvre.
+
+**Étape 6 :** Après le paiement, le client reçoit un reçu par e-mail et peut le télécharger.
+
+<Info>
+Sur l’application mobile, rendez-vous dans **Liens de paiement**, sélectionnez **Paiement simple**, et suivez les mêmes étapes.
+</Info>
+
+## Lien de Paiement Varié
+
+Permet de proposer plusieurs prix pour un même objectif. Le client choisit un prix, définit la quantité, et effectue le paiement. Idéal pour les paiements en tranches ou options multiples.
+
+### Comment créer un lien varié
+
+**Étape 1 :** Connectez-vous à votre tableau de bord et allez dans **Plus > Paiements > Lien de Paiement**.
+
+**Étape 2 :** Cliquez sur **"Créer un lien"** et sélectionnez **"Lien varié"**.
+
+**Étape 3 :** Définissez les libellés et montants pour chaque option. Ajoutez autant d’options que nécessaire.
+
+![Création d’un lien varié](/images/payment-links/varied-link.png)
+
+**Étape 4 :** Le lien sera généré, copiez-le et partagez-le.
+
+**Étape 5 :** Le client clique sur le lien, choisit un prix, une quantité, et paie.
+
+**Étape 6 :** Après le paiement, il reçoit un reçu téléchargeable par e-mail.
+
+<Info>
+Depuis l’application mobile, accédez à **Liens de paiement**, sélectionnez **Paiement varié**, et suivez les mêmes étapes.
+</Info>
+
+## Comment choisir le bon lien
+
+| Fonctionnalité                                          | Lien de Don                                         | Paiement Simple                                    | Lien Varié                                                       |
+|:--------------------------------------------------------|:----------------------------------------------------|:--------------------------------------------------|:-----------------------------------------------------------------|
+| L'utilisateur peut entrer le montant à payer            | Oui, si activé par le créateur du lien              | Non                                               | Non                                                              |
+| L'utilisateur peut voir la liste des donateurs          | Oui, si activé par le créateur du lien              | Non                                               | Non                                                              |
+| Le créateur peut fixer un montant minimum               | Oui                                                 | Non                                               | Non                                                              |
+| Le créateur peut activer/désactiver ces options         | Oui                                                 | Non                                               | Non                                                              |
+| Prend en charge un prix fixe unique                     | Oui                                                 | Oui                                               | Oui                                                              |
+| Prend en charge plusieurs prix fixes                    | Non                                                 | Non                                               | Oui                                                              |
+| Idéal pour                                               | Dons, financement participatif, contributions, njangi | Abonnements, paiements uniques, frais de webinaires | Paiements par tranche ou à choix multiple                        |
+
+<Note>
+Le montant minimum pour un paiement via lien est **500 FCFA**.
+
+Vous pouvez définir une date d’expiration après laquelle le lien ne sera plus actif.
+
+Des frais s’appliquent aux paiements via liens. Consultez notre [Calculateur de Tarifs](https://fapshi.com/fr/nos-tarifs#pricing-calculator) pour les détails.
+</Note>

@@ -30,10 +30,10 @@
                 "group": "No-code Solutions",
                 "pages": [
                   "en/guides/no-code-solutions/payment-links",
-                  "en/guides/no-code-solutions/products",
-                  "en/guides/no-code-solutions/stores",
+                  "en/guides/no-code-solutions/event-ticketing",
                   "en/guides/no-code-solutions/invoicing",
-                  "en/guides/no-code-solutions/event-ticketing"
+                  "en/guides/no-code-solutions/products",
+                  "en/guides/no-code-solutions/stores"
                 ]
               },
               {
@@ -123,10 +123,10 @@
                 "group": "Solutions sans code",
                 "pages": [
                   "fr/guides/no-code-solutions/payment-links",
-                  "fr/guides/no-code-solutions/products",
-                  "fr/guides/no-code-solutions/stores",
+                  "fr/guides/no-code-solutions/event-ticketing",
                   "fr/guides/no-code-solutions/invoicing",
-                  "fr/guides/no-code-solutions/event-ticketing"
+                  "fr/guides/no-code-solutions/products",
+                  "fr/guides/no-code-solutions/stores"
                 ]
               },
               {
