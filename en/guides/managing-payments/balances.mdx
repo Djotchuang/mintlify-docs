@@ -1,5 +1,85 @@
 ---
 title: 'Balances'
+description: 'Understand how Fapshi balances work, including service-specific balances and your main wallet balance.'
+keywords: ['fapshi balances', 'wallet balance', 'service funds', 'merchant wallet', 'fapshi payment management']
 ---
 
 ---
+
+Fapshi gives you the possibility to manage your funds in the easiest way possible. Whether you're using the platform as a merchant or for personal purposes, understanding how your balances are structured is essential.
+
+<Tip>If there are any disputes on your account, they will also appear on this page.</Tip>
+
+## Balance Structure
+
+There are two types of balances on Fapshi:
+
+1. **Main Wallet Balance**
+2. **Service-specific Balances**
+
+### Main Wallet Balance
+
+This is your **default wallet**. All payments received through **no-code solutions** such as:
+
+- [Payment Links](/en/guides/no-code-solutions/payment-links)
+- [Invoices](/en/guides/no-code-solutions/invoicing)
+- [Event Ticketing](/en/guides/no-code-solutions/event-ticketing)
+- [Products and Stores](/en/guides/no-code-solutions/products)
+
+...are recorded in your **Main Wallet Balance**.
+
+<Info>
+You can view your wallet balance directly from the **Balances** tab in the [Fapshi Dashboard](https://dashboard.fapshi.com) or the **Wallet** tab on the mobile app.
+</Info>
+
+### Service-Specific Balances
+
+If you're a developer or merchant using Fapshi services programmatically (via APIs, Plugins, or SDKs), each **service you create** has its own dedicated balance.
+
+These balances are **independent**, meaning:
+
+- Each service receives its own payments
+- You can view the balance for each service separately
+- You can **transfer funds** between services (useful for cash-in-pay-out use cases) or to your **main wallet balance** for withdrawal.
+
+<Note>
+This structure makes it easier to separate finances across different projects or use cases. 
+To withdraw money from your service, you must transfer the money into your main balance.
+</Note>
+
+## How to View Your Balances
+
+You can view both your **Main Wallet Balance** and your **Service-specific Balances** from the Balances tab:
+
+- On Web: Go to **Dashboard > Balances**
+- On Mobile: Tap the **Wallet** tab at the bottom of the app
+
+Each service or balance will be listed along with its total funds and a history of recent transactions.
+
+## Moving Funds Between Balances
+
+You can **transfer funds**:
+
+- From one service to another
+- From a service to your **Main Wallet Balance** (for payout)
+
+To do this:
+
+1. Open the **Balances** tab
+2. Tap on the service you want to transfer from
+3. Tap **Transfer**
+4. Select the destination and amount
+5. Confirm using your Fapshi PIN
+
+<Warning>
+If you want to withdraw money you've collected via a service, you must transfer the funds into your main wallet balance.
+</Warning>
+
+## Notes
+
+- Balances are displayed in **XAF (FCFA)**.
+- You can withdraw your funds at any time via [Payouts](/en/guides/managing-payments/payouts).
+
+---
+
+Need help? Contact [support@fapshi.com](mailto:support@fapshi.com) or visit our [Help & Support Center](https://fapshi.com/en/help-and-support).

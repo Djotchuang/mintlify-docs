@@ -1,12 +1,107 @@
 ---
 title: 'WooCommerce'
+description: 'Easily integrate Fapshi with your WooCommerce store to accept payments without writing any line of code.'
+keywords: ['fapshi woocommerce', 'woocommerce payment plugin', 'accept momo on wordpress', 'woocommerce mtn momo', 'woocommerce orange money', 'fapshi payment integration', 'woocommerce fapshi plugin']
 ---
 
 ---
 
-If you have a WooCommerce store, you can integrate with Fapshi with no coding required! All you'll need is an activated Fapshi account.
+If you have a WooCommerce store, you can integrate with Fapshi with no coding required! All you'll need is an activated Fapshi account. 
 
 - If you don't have a Fapshi account, you can [sign up here](https://dashboard.fapshi.com/register)
 - If you have an account but haven't activated it yet, [follow this guide](/en/guides/getting-started/activate-account) to activate your account.
 
+<Card title="Available Payment Methods" icon="money-check">
+- MTN Mobile Money
+- Orange Money
+</Card>
+
 ## Installing Fapshi on WooCommerce
+
+### Requirements
+
+- Create a service and obtain your [Fapshi API Keys](/en/api-reference/create-a-service)  
+- Install [WooCommerce](https://woocommerce.com/) in your WordPress website
+- PHP version: 5.6.0 - 8.1.0  
+
+#### Recommended
+
+- Latest WordPress version  
+- PHP 5.6 or greater  
+- MySQL 5.6 or greater
+
+### Automatic Installation
+
+- Login to your WordPress Dashboard.
+- Click on **“Plugins > Add New”** from the left menu.
+- In the search box, type **Fapshi Woocommerce**.
+- Click on Install Now on **Fapshi Woocommerce** to install the plugin on your site.
+- Confirm the installation.
+- Activate the plugin.
+- Click on **“WooCommerce > Settings”** from the left menu and click the “Checkout” tab.
+- Click on the **Fapshi link** from the available Checkout Options
+- Check the [Configuration section](#configuring-the-plugin) to Configure your **Fapshi Woocommerce** settings accordingly.
+
+### Manual Installation
+
+1. Download the plugin from [this GitHub repository](https://github.com/Fapshi/Plugins).
+<Tip>
+**We've updated the plugin!**
+
+We recently updated the plugin for new versions of WordPress. Switch to the [wp-woocommerce branch](https://github.com/Fapshi/Plugins/tree/wp-woocommerce) to use the most recent version.
+
+If you're using an older version of WordPress, feel free to use the plugin in the [main branch](https://github.com/Fapshi/Plugins/tree/main).
+
+If you were already using the old version of the plugin and have updated your WordPress to the recent version, add this shortcode `[woocommerce_checkout]` to your **Checkout page** to keep using the old plugin.
+</Tip>
+
+2. Log into your WordPress Admin dashboard.
+3. Navigate to **Plugins > Add New**, then click **Upload Plugin**.
+4. Choose the downloaded ZIP file, then click **Install Now** and **Activate**.
+5. Go to **WooCommerce > Settings > Payments**.
+6. Click on **Fapshi** from the available checkout options.
+7. Configure your **Fapshi WooCommerce** settings accordingly.
+
+## Configuring the Plugin
+
+Available configuration options: 
+
+- Enable or disable the Fapshi payment gateway
+- Toggle between test mode and live mode
+- Add your API Key and API User
+- Add a webhook
+
+<Note>To obtain a live API key and user, [create a service](/en/api-reference/create-a-service) and switch to it, then copy your Live API key and user.</Note>
+
+## Best Practices
+
+- Always confirm the status of transactions using your Fapshi Dashboard.
+- Keep your API keys secure and private.
+- Update to the latest version of the plugin regularly.
+
+## Support
+
+Need help?
+
+- 📧 [Contact Support](mailto:support@fapshi.com)  
+- 💬 [Join our developer community on Slack](https://fapshicommunity.slack.com/join/shared_invite/zt-1dz7tl3kj-Wl_mdNxiiCI31i8mrVIrtQ#/shared-invite/email)
+- 🐦 Follow [Fapshi on LinkedIn](https://cm.linkedin.com/company/fapshiinc) [@fapshi on X](https://x.com/fapshi) 
+
+## Frequently Asked Questions
+
+### 1. What do I need to use the plugin?
+
+A [Fapshi account](https://dashboard.fapshi.com/register). Make sure to activate your account.
+
+### 2. Is the plugin free?
+
+Yes, it's 100% free.
+
+### 3. What are the pricing fees?
+
+Check out our [Pricing & Fees](https://fapshi.com/pricing) page, or use the [Pricing Calculator](https://fapshi.com/pricing/#pricing-calculator) for accurate billing insights.
+
+## Are You Writing Custom Code?
+
+Visit the [API Reference](/en/api-reference/) for advanced manual integration options.
+

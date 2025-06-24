@@ -1,88 +1,85 @@
 ---
-title: 'Balances'
-description: 'Text, title, and styling in standard markdown'
-icon: 'text-size'
+title: 'Soldes'
+description: "Comprenez comment fonctionnent les soldes sur Fapshi, y compris les soldes principaux et les soldes spécifiques aux services."
+keywords: ['soldes fapshi', 'solde principal', 'fonds du service', 'portefeuille marchand', 'gestion des paiements fapshi']
 ---
 
-## Titles
+---
 
-Best used for section headers.
+Fapshi vous permet de gérer vos fonds de la manière la plus simple possible. Que vous utilisiez la plateforme en tant que marchand ou à titre personnel, il est essentiel de comprendre comment vos soldes sont structurés.
 
-```md
-## Titles
-```
+<Tip>En cas de litige sur votre compte, vous verrez également ces informations sur cette page.</Tip>
 
-### Subtitles
+## Structure des Soldes
 
-Best use to subsection headers.
+Il existe deux types de soldes sur Fapshi :
 
-```md
-### Subtitles
-```
+1. **Solde Principal (Portefeuille principal)**
+2. **Soldes spécifiques aux services**
 
-<Tip>
+### Solde Principal
 
-Each **title** and **subtitle** creates an anchor and also shows up on the table of contents on the right.
+Il s'agit de votre **portefeuille par défaut**. Tous les paiements reçus via les **solutions sans code** telles que :
 
-</Tip>
+- [Liens de paiement](/fr/guides/no-code-solutions/payment-links)
+- [Factures](/fr/guides/no-code-solutions/invoicing)
+- [Billetterie d’événement](/fr/guides/no-code-solutions/event-ticketing)
+- [Produits et Boutiques](/fr/guides/no-code-solutions/products)
 
-## Text Formatting
+...sont enregistrés dans votre **solde principal**.
 
-We support most markdown formatting. Simply add `**`, `_`, or `~` around text to format it.
+<Info>
+Vous pouvez consulter votre solde principal depuis l’onglet **Soldes** du [Tableau de bord Fapshi](https://dashboard.fapshi.com) ou via l’onglet **Portefeuille** sur l'application mobile.
+</Info>
 
-| Style         | How to write it   | Result          |
-| ------------- | ----------------- | --------------- |
-| Bold          | `**bold**`        | **bold**        |
-| Italic        | `_italic_`        | _italic_        |
-| Strikethrough | `~strikethrough~` | ~strikethrough~ |
+### Soldes Spécifiques aux Services
 
-You can combine these. For example, write `**_bold and italic_**` to get **_bold and italic_** text.
+Si vous êtes développeur ou commerçant et que vous utilisez les services Fapshi de manière programmatique (via les API, Plugins ou SDKs), chaque **service que vous créez** dispose de son propre solde dédié.
 
-You need to use HTML to write superscript and subscript text. That is, add `<sup>` or `<sub>` around your text.
+Ces soldes sont **indépendants**, ce qui signifie :
 
-| Text Size   | How to write it          | Result                 |
-| ----------- | ------------------------ | ---------------------- |
-| Superscript | `<sup>superscript</sup>` | <sup>superscript</sup> |
-| Subscript   | `<sub>subscript</sub>`   | <sub>subscript</sub>   |
+- Chaque service reçoit ses propres paiements
+- Vous pouvez consulter le solde de chaque service séparément
+- Vous pouvez **transférer des fonds** entre services (utile pour les cas d'utilisation de type cash-in/cash-out) ou vers votre **solde principal** pour effectuer un retrait
 
-## Linking to Pages
+<Note>
+Cette structure vous permet de mieux organiser les finances de vos différents projets.  
+Pour retirer de l'argent d'un service, vous devez d'abord transférer les fonds vers votre solde principal.
+</Note>
 
-You can add a link by wrapping text in `[]()`. You would write `[link to google](https://google.com)` to [link to google](https://google.com).
+## Comment Consulter vos Soldes
 
-Links to pages in your docs need to be root-relative. Basically, you should include the entire folder path. For example, `[link to text](/writing-content/text)` links to the page "Text" in our components section.
+Vous pouvez consulter à la fois votre **Solde Principal** et vos **Soldes de Services** depuis l'onglet Soldes :
 
-Relative links like `[link to text](../text)` will open slower because we cannot optimize them as easily.
+- Sur le Web : accédez à **Tableau de bord > Soldes**
+- Sur Mobile : appuyez sur l'onglet **Portefeuille** en bas de l'écran
 
-## Blockquotes
+Chaque service ou solde sera listé avec le montant total et l'historique des transactions associées.
 
-### Singleline
+## Transfert de Fonds entre Soldes
 
-To create a blockquote, add a `>` in front of a paragraph.
+Vous pouvez **transférer des fonds** :
 
-> Dorothy followed her through many of the beautiful rooms in her castle.
+- D’un service à un autre
+- D’un service vers votre **solde principal** (pour un retrait)
 
-```md
-> Dorothy followed her through many of the beautiful rooms in her castle.
-```
+Pour ce faire :
 
-### Multiline
+1. Ouvrez l’onglet **Soldes**
+2. Sélectionnez le service à partir duquel vous souhaitez transférer
+3. Appuyez sur **Transférer**
+4. Choisissez la destination et le montant
+5. Confirmez avec votre code PIN Fapshi
 
-> Dorothy followed her through many of the beautiful rooms in her castle.
->
-> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
+<Warning>
+Si vous souhaitez retirer des fonds collectés via un service, vous devez d’abord les transférer vers votre solde principal.
+</Warning>
 
-```md
-> Dorothy followed her through many of the beautiful rooms in her castle.
->
-> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
-```
+## Remarques
 
-### LaTeX
+- Les soldes sont affichés en **XAF (FCFA)**.
+- Vous pouvez retirer vos fonds à tout moment via [Retraits](/fr/guides/managing-payments/payouts).
 
-Mintlify supports [LaTeX](https://www.latex-project.org) through the Latex component.
+---
 
-<Latex>8 x (vk x H1 - H2) = (0,1)</Latex>
-
-```md
-<Latex>8 x (vk x H1 - H2) = (0,1)</Latex>
-```
+Besoin d’aide ? Contactez [support@fapshi.com](mailto:support@fapshi.com) ou visitez notre [Centre d’Aide et Support](https://fapshi.com/fr/aide-et-support).
