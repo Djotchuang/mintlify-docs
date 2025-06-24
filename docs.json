@@ -54,11 +54,23 @@
             "tab": "API Reference",
             "groups": [
               {
-                "group": "API Documentation",
-                "pages": ["en/api-reference/introduction"]
+                "group": "API Overview",
+                "pages": [
+                  "en/api-reference/introduction",
+                  "en/api-reference/getting-started",
+                  "en/api-reference/create-a-service",
+                  {
+                    "group": "Preliminary Knowledge",
+                    "pages": [
+                      "en/api-reference/preliminary-knowledge/api-credentials",
+                      "en/api-reference/preliminary-knowledge/environment",
+                      "en/api-reference/preliminary-knowledge/request-status"
+                    ]
+                  }
+                ]
               },
               {
-                "group": "Endpoint Examples",
+                "group": "Endpoints",
                 "pages": [
                   "en/api-reference/endpoint/get",
                   "en/api-reference/endpoint/create",

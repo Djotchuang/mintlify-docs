@@ -1,0 +1,110 @@
+---
+title: 'Live vs Sandbox Environment'
+description: 'Understand the difference between Fapshi’s test (sandbox) and live environments, and how to switch between them securely.'
+keywords: ['fapshi sandbox', 'fapshi test environment', 'live vs sandbox', 'fapshi api testing', 'sandbox numbers', 'simulate payment']
+---
+
+---
+
+Fapshi provides two separate environments for developers:
+
+- **Sandbox (Test) Environment**
+- **Live (Production) Environment**
+
+Each environment is designed to serve a specific purpose and requires its own credentials and base URL.
+
+## 1. Sandbox Environment (Test Mode)
+
+The **Sandbox environment** is used for testing and development. It allows you to explore how the Fapshi API works **without using real money**.
+
+Although no real transactions occur, the API behaves **exactly like the live environment**, ensuring a seamless transition from testing to production.
+
+### Key Features
+
+- No real funds involved
+- Identical API behavior as live
+- Separate credentials and base URL
+- Ideal for development and integration testing
+
+### Sandbox Base URL
+
+https://sandbox.fapshi.com
+
+
+### Simulating Payments
+
+When testing local payment methods (e.g., Mobile Money), you can **simulate success or failure** depending on the number used.
+
+### Test Numbers Table
+
+<table>
+  <thead>
+    <tr>
+      <th align="left">Status</th>
+      <th align="left">Provider</th>
+      <th align="left">Test Numbers</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="2">✅ Success</td>
+      <td>MTN Cameroon</td>
+      <td>670000000, 670000002, 650000000</td>
+    </tr>
+    <tr>
+      <td>Orange Cameroon</td>
+      <td>690000000, 690000002, 656000000</td>
+    </tr>
+    <tr>
+      <td rowspan="2">❌ Failure</td>
+      <td>MTN Cameroon</td>
+      <td>670000001, 670000003, 650000001</td>
+    </tr>
+    <tr>
+      <td>Orange Cameroon</td>
+      <td>690000001, 690000003, 656000001</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+<Note>
+If you use any number **not listed above**, the transaction outcome will be determined randomly.
+</Note>
+
+## 2. Live Environment (Production Mode)
+
+The **Live environment** is where real transactions happen. To use this environment:
+
+- You must have an [activated account](/en/guides/getting-started/activate-account)
+- You must [create a service](/en/api-reference/create-a-service)
+- You will receive unique **Live API credentials** for each service
+
+### Live Base URL
+
+https://live.fapshi.com
+
+
+<Warning>
+**Live API keys are sensitive.** You’ll only see your `apikey` once, so copy and store it safely. You can generate a new key if compromised — this will immediately revoke the old one.
+</Warning>
+
+## Switching From Sandbox to Live
+
+When moving your application from testing to production:
+
+1. **Replace your Sandbox credentials** (`apiuser` and `apikey`) with your **Live credentials**
+2. **Switch the base URL** from:
+
+`https://sandbox.fapshi.com` to `https://live.fapshi.com`
+
+3. **Double-check** your integration for live readiness
+
+<Tip>
+Once you switch to the live environment and update your credentials and base URL, you're good to go!
+</Tip>
+
+---
+
+Need help? Reach out to [support@fapshi.com](mailto:support@fapshi.com) or visit our [Help & Support Center](https://fapshi.com/en/help-and-support).

@@ -1,0 +1,43 @@
+---
+title: 'Getting Started with the API'
+description: 'Learn how to set up and use the Fapshi API, from creating API keys to making authenticated requests and understanding the API’s structure and capabilities.'
+keywords: ['fapshi api', 'api setup', 'api payments', 'payment integration', 'developer api']
+---
+
+---
+
+The **Fapshi API** empowers you to build seamless and fully customized payment experiences within your website, app, or service. Whether you're collecting payments or disbursing funds, the API gives you everything you need to go live quickly — in minutes, not days.
+
+Have questions, feedback, or suggestions? Reach out via [support@fapshi.com](mailto:support@fapshi.com), or join the conversation in our [Slack developer community](https://fapshicommunity.slack.com/archives/C034Q50QB6U). We're always listening — to the good, the bad, the confusing, and the wishlist.
+
+## Prerequisites
+
+Before diving in, make sure the following are in place:
+
+- A [Fapshi account](https://dashboard.fapshi.com/register)
+- Your account is [activated](/en/guides/getting-started/activate-account)
+- You’ve [created a service](/en/api-reference/create-a-service) from your dashboard (this will provide your [API Key and API User](/en/api-reference/preliminary-knowledge/api-credentials))
+
+<Note>
+If you're new to the API, we recommend reviewing the [Preliminary Knowledge](/en/api-reference/preliminary-knowledge) section first. It contains essential information about authentication, request structure, response formats, and general rules for interacting with the API.
+</Note>
+
+## What You Can Do with the API
+
+The Fapshi API supports two primary operations:
+
+### 1. **Collect Payments**
+
+You can collect payments using either:
+
+- [`Initiate Pay`](/en/api-reference/endpoints/initiate-pay): Provides a prebuilt checkout page where your customers complete payments through a Fapshi-hosted interface. Great for rapid setup.
+  
+- [`Direct Pay`](/en/api-reference/endpoints/direct-pay): Offers full control. You’ll build your own payment form and handle validations and user experience on your end, while using our backend to process the transaction.
+
+### 2. **Disburse Funds**
+
+Send money to one or multiple mobile money accounts via our [disbursement endpoint](/en/api-reference/endpoints/disburse-funds). This is useful for payouts, salary distribution, or financial services.
+
+---
+
+You’re now ready to begin! Head over to the [API Reference](/en/api-reference/) for details on available endpoints, parameters, responses, and usage examples.

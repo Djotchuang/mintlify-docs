@@ -1,0 +1,36 @@
+---
+title: 'Create a Service'
+description: ''
+keywords: 
+---
+
+---
+
+To use our API endpoints, you’ll need to create a service. A service is a representation of the service or platform you want to use to collect or disburse payments. You can either create two kinds of service:
+1. **Collection Service**: This will be used to collect money on your platform. All funds will be reflected in this service on your dashboard.
+2. **Disbursement Service**: You can use this to issue payouts programmatically on your platform.
+
+<Note>
+You cannot use the same service for both collections and disbursement. If you need both functionalities, you must create two separate services.
+</Note>
+
+<Warning>
+By default, payouts are deactivated on **Live Mode**. So, you have to [Contact Support](https://wa.me/237658610472) with your **API User** to request for activation. This should only be done when you have tested the functionality with the test keys.
+</Warning>
+
+## How to Create a Service
+
+1. Log into your dashboard and click the **Merchants dropdown** on the extreme left of the menu bar.
+
+2. Click the "New Service" button.
+
+3. Fill in the required details and confirm.
+
+<Info>
+- The service name is the name of your website or app.
+- The domain name can be what you have already bought or what you intend to buy. i.e. You must not own it yet. Note that you cannot use **fapshi.com** or **iventily.com** as your domain name, since these are Fapshi domains.
+</Info>
+
+4. Your **apikey** and **apiuser** will be generated and will appear at the bottom on the dashboard page. Copy and save it judiciously.
+
+<Warning>Make sure you keep your API keys private. Never save API keys in your code or in Github. Instead use environment files and, for an extra level of security, rotate API keys regularly.</Warning>
