@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "API de Paiement Fapshi",
-    "description": "API pour générer des liens de paiement, des paiements directs, la surveillance des transactions, les paiements sortants, et plus encore.",
+    "description": "API pour générer des liens de paiement, des paiements directs, la surveillance des transactions, les retraits, et plus encore.",
     "version": "1.0.0"
   },
   "servers": [
@@ -532,7 +532,7 @@
     "/payout": {
       "post": {
         "summary": "Effectuer un Paiement Sortant",
-        "description": "Envoyer de l'argent sur le compte mobile money ou bancaire d'un utilisateur via un service activé pour les paiements sortants.",
+        "description": "Envoyer de l'argent sur le compte mobile money ou bancaire d'un utilisateur via un service activé pour les retraits.",
         "requestBody": {
           "required": true,
           "content": {
