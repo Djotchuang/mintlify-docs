@@ -1,0 +1,24 @@
+---
+title: "Obtenir le statut d’une transaction de paiement"
+description: "Récupérez le statut d’une transaction de paiement en utilisant son identifiant de transaction."
+keywords: ["statut paiement", "statut transaction", "statut paiement fapshi", "vérifier paiement", "api paiement"]
+openapi: '/fr/api-reference/openapi.json GET /payment-status/{transId}'
+---
+
+## Endpoint
+
+`GET /payment-status/:transId`
+
+Vérifiez le statut d’un paiement via son identifiant de transaction.
+
+## Valeurs du statut
+
+| Statut     | Signification                                                                                 |
+|:-----------|:---------------------------------------------------------------------------------------------|
+| CREATED    | Paiement pas encore tenté.                                                                    |
+| PENDING    | L’utilisateur est en cours de paiement.                                                      |
+| SUCCESSFUL | Paiement complété avec succès.                                                                |
+| FAILED     | Paiement échoué.                                                                             |
+| EXPIRED    | Cela signifie que 24 heures se sont écoulées depuis la génération du lien de paiement sans qu’aucune tentative de paiement réussie n’ait été effectuée, OU que le lien a été [expiré manuellement](/fr/api-reference/endpoint/expire-pay) pour empêcher le paiement. |
+
+<Note>Aucun paiement ne peut être effectué une fois le statut SUCCESSFUL ou EXPIRED.</Note>

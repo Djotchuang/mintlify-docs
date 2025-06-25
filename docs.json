@@ -160,18 +160,34 @@
             ]
           },
           {
-            "tab": "Reference API",
+            "tab": "Référence API",
             "groups": [
               {
-                "group": "Documentation API",
-                "pages": ["fr/api-reference/introduction"]
+                "group": "Aperçu de l’API",
+                "pages": [
+                  "fr/api-reference/getting-started",
+                  "fr/api-reference/create-a-service",
+                  {
+                    "group": "Connaissances Préliminaires",
+                    "pages": [
+                      "fr/api-reference/preliminary-knowledge/api-credentials",
+                      "fr/api-reference/preliminary-knowledge/environment",
+                      "fr/api-reference/preliminary-knowledge/request-status"
+                    ]
+                  }
+                ]
               },
               {
-                "group": "Exemples des Endpoints",
+                "group": "Points de terminaison",
                 "pages": [
-                  "fr/api-reference/endpoint/get",
-                  "fr/api-reference/endpoint/create",
-                  "fr/api-reference/endpoint/delete",
+                  "fr/api-reference/endpoint/initiate-pay",
+                  "fr/api-reference/endpoint/direct-pay",
+                  "fr/api-reference/endpoint/payment-status",
+                  "fr/api-reference/endpoint/expire-pay",
+                  "fr/api-reference/endpoint/transaction-by-user",
+                  "fr/api-reference/endpoint/search-transactions",
+                  "fr/api-reference/endpoint/balance",
+                  "fr/api-reference/endpoint/payout",
                   "fr/api-reference/endpoint/webhook"
                 ]
               }

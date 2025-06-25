@@ -1,0 +1,23 @@
+---
+title: "Expirer une transaction de paiement"
+description: "Expirer un lien de paiement pour empêcher tout paiement ultérieur."
+keywords: ["expirer paiement", "annuler lien paiement", "invalider paiement", "api paiement", "expire-pay"]
+openapi: '/fr/api-reference/openapi.json POST /expire-pay'
+---
+
+## Endpoint
+
+`POST /expire-pay`
+
+Expire un lien de paiement pour empêcher tout paiement ultérieur.
+
+## Paramètres
+
+| Nom     | Obligatoire | Type   | Description                         |
+|:--------|:------------|:-------|:----------------------------------|
+| transId | Oui         | chaîne | ID de la transaction à expirer    |
+
+## Réponse
+
+- Retourne les détails de la transaction expirée si l’opération réussit.  
+- Retourne un `400 Bad Request` avec le message `"Link already expired"` si la transaction était déjà expirée.

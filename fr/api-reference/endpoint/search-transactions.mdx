@@ -1,0 +1,26 @@
+---
+title: "Recherche de Transactions"
+description: "Recherchez des transactions en utilisant différents critères de filtre."
+keywords: ["recherche de transactions", "filtrer paiements", "requête de transaction", "recherche fapshi", "api de paiement"]
+openapi: '/fr/api-reference/openapi.json GET /search'
+---
+
+## Endpoint
+
+`GET /search`
+
+Recherchez des transactions selon des critères.
+
+## Paramètres de requête
+
+| Nom    | Description                                                          | Valeurs acceptées                          |
+|:-------|:---------------------------------------------------------------------|:------------------------------------------|
+| status | Filtrer les transactions par statut.                                | `created`, `successful`, `failed`, `expired` |
+| medium | Filtrer par moyen de paiement.                                      | `mobile money`, `orange money`, `card`   |
+| start  | Date de début (AAAA-MM-JJ) pour filtrer les transactions initiées.  | Format date                              |
+| end    | Date de fin (AAAA-MM-JJ) pour filtrer les transactions initiées.    | Format date                              |
+| amt    | Montant exact pour filtrer.                                          | Entier                                   |
+| limit  | Nombre maximum de résultats (par défaut 10).                        | 1 à 100                                  |
+| sort   | Ordre de tri : `asc` ou `desc`. Par défaut, ordre descendant (le plus récent en premier). | `asc`, `desc`                            |
+
+<Note>Les valeurs invalides des paramètres de requête sont ignorées.</Note>

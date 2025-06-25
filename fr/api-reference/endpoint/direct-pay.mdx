@@ -1,0 +1,37 @@
+---
+title: "Initier une demande de paiement direct"
+description: "Envoyez une demande de paiement directement sur le mobile d'un utilisateur."
+keywords: ["paiement direct", "fapshi direct pay", "demande paiement mobile", "api paiement", "endpoint direct-pay"]
+openapi: '/fr/api-reference/openapi.json POST /direct-pay'
+---
+
+## Endpoint
+
+`POST /direct-pay`
+
+Envoyez une demande de paiement directement sur le mobile d’un utilisateur. Vous êtes responsable de la création de votre propre formulaire de paiement et de la vérification du statut du paiement.
+
+## Paramètres
+
+| Nom        | Obligatoire | Type    | Description                                                                                |
+|:-----------|:------------|:--------|:-------------------------------------------------------------------------------------------|
+| amount     | Oui         | entier  | Montant à payer (minimum 100 XAF).                                                        |
+| phone      | Oui         | chaîne  | Numéro de téléphone pour la demande de paiement (exemple : 67XXXXXXX).                    |
+| medium     | Non         | chaîne  | `"mobile money"` ou `"orange money"`. À omettre pour détection automatique.                |
+| name       | Non         | chaîne  | Nom du payeur.                                                                            |
+| email      | Non         | chaîne  | Email du payeur pour recevoir le reçu.                                                    |
+| userId     | Non         | chaîne  | ID utilisateur dans votre système (1–100 caractères; a–z, A–Z, 0–9, -, _ autorisés).     |
+| externalId | Non         | chaîne  | ID de transaction ou commande pour rapprochement (1–100 caractères; mêmes règles).        |
+| message    | Non         | chaîne  | Motif du paiement.                                                                        |
+
+## Réponse
+
+- `200 OK` avec un corps JSON contenant :  
+  - `message` : message de succès  
+  - `transId` : ID de la transaction pour suivre le paiement  
+  - `dateInitiated` : date de l’initiation du paiement
+
+- En cas d’erreur, un code 4XX avec un message d’échec est retourné.
+
+<Warning> Le paiement direct est désactivé par défaut en environnement live ; [contactez le support](https://wa.me/237658610472) pour activation.</Warning>  
+<Danger>Manipulez cet endpoint avec précaution ; toute mauvaise utilisation peut entraîner la suspension de votre compte.</Danger>

@@ -1,0 +1,27 @@
+---
+title: "Effectuer un retrait"
+description: "Envoyez de l’argent sur le compte mobile money ou bancaire d’un utilisateur via un service de retrait."
+keywords: ["effectuer un retrait", "envoyer de l'argent", "retrait fapshi", "paiements en masse", "api de paiement"]
+openapi: '/fr/api-reference/openapi.json POST /payout'
+---
+
+## Endpoint
+
+`POST /payout`
+
+Envoyez de l’argent sur le compte mobile money ou bancaire d’un utilisateur via un service de retrait.
+
+> **Avertissement :** Une fois les retraits activés pour un service, ce service ne peut plus collecter de paiements. Utilisez des services distincts pour la collecte et les retraits.
+
+## Paramètres
+
+| Nom        | Requis   | Type    | Description                                                                                       |
+|:-----------|:---------|:--------|:------------------------------------------------------------------------------------------------|
+| amount     | Oui      | entier  | Montant à envoyer (minimum 100 XAF).                                                            |
+| phone      | Oui      | chaîne  | Numéro de téléphone du bénéficiaire (ex. : 67XXXXXXX).                                          |
+| medium     | Non      | chaîne  | `"mobile money"` ou `"orange money"`. Détecté automatiquement si omis.                          |
+| name       | Non      | chaîne  | Nom du bénéficiaire.                                                                             |
+| email      | Non      | chaîne  | Email du bénéficiaire pour recevoir le reçu de confirmation du retrait.                         |
+| userId     | Non      | chaîne  | ID utilisateur de votre système pour le suivi des retraits (1-100 caractères; autorisés : a-z, A-Z, 0-9, -, _). |
+| externalId | Non      | chaîne  | ID de transaction/commande pour la réconciliation (1-100 caractères; autorisés : a-z, A-Z, 0-9, -, _).   |
+| message    | Non      | chaîne  | Description ou motif du retrait.                                                                |

@@ -1,0 +1,103 @@
+---
+title: 'Environnement Live vs Sandbox'
+description: 'Comprenez la différence entre les environnements test (sandbox) et live de Fapshi, et comment passer de l’un à l’autre en toute sécurité.'
+keywords: ['fapshi sandbox', 'environnement de test fapshi', 'live vs sandbox', 'test api fapshi', 'numéros sandbox', 'simuler paiement']
+---
+
+---
+
+Fapshi propose deux environnements distincts pour les développeurs :
+
+- **Environnement Sandbox (Test)**
+- **Environnement Live (Production)**
+
+Chaque environnement a un objectif précis et nécessite ses propres identifiants et URL de base.
+
+## 1. Environnement Sandbox (Mode Test)
+
+L’**environnement Sandbox** est destiné aux tests et au développement. Il vous permet d’explorer le fonctionnement de l’API Fapshi **sans utiliser d’argent réel**.
+
+Même si aucune transaction réelle n’a lieu, l’API se comporte **exactement comme en environnement live**, garantissant une transition fluide vers la production.
+
+### Fonctionnalités Clés
+
+- Aucun fonds réel impliqué  
+- Comportement identique à celui de l’environnement live  
+- Identifiants et URL de base distincts  
+- Idéal pour les tests d’intégration et de développement  
+
+### URL de base Sandbox
+
+https://sandbox.fapshi.com
+
+### Simulation de Paiements
+
+Lors des tests avec des moyens de paiement locaux (comme Mobile Money), vous pouvez **simuler un succès ou un échec** selon le numéro utilisé.
+
+### Tableau des Numéros de Test
+
+<table>
+  <thead>
+    <tr>
+      <th align="left">Statut</th>
+      <th align="left">Opérateur</th>
+      <th align="left">Numéros de Test</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="2">✅ Succès</td>
+      <td>MTN Cameroun</td>
+      <td>670000000, 670000002, 650000000</td>
+    </tr>
+    <tr>
+      <td>Orange Cameroun</td>
+      <td>690000000, 690000002, 656000000</td>
+    </tr>
+    <tr>
+      <td rowspan="2">❌ Échec</td>
+      <td>MTN Cameroun</td>
+      <td>670000001, 670000003, 650000001</td>
+    </tr>
+    <tr>
+      <td>Orange Cameroun</td>
+      <td>690000001, 690000003, 656000001</td>
+    </tr>
+  </tbody>
+</table>
+
+<Note>
+Si vous utilisez un numéro **non listé ci-dessus**, le résultat de la transaction sera déterminé aléatoirement.
+</Note>
+
+## 2. Environnement Live (Mode Production)
+
+L’**environnement Live** est celui dans lequel les transactions réelles sont effectuées. Pour pouvoir l’utiliser :
+
+- Vous devez avoir un [compte activé](/fr/guides/getting-started/activate-account)  
+- Vous devez [créer un service](/fr/api-reference/create-a-service)  
+- Vous recevrez des **identifiants API Live** uniques pour chaque service  
+
+### URL de base Live
+
+https://live.fapshi.com
+
+<Warning>
+Les clés API Live sont sensibles. Vous ne verrez votre `apikey` **qu’une seule fois**, copiez-la et conservez-la dans un endroit sûr. En cas de compromission, vous pouvez générer une nouvelle clé, ce qui invalidera immédiatement l’ancienne.
+</Warning>
+
+## Passer de Sandbox à Live
+
+Lorsque vous passez de l’environnement de test à la production :
+
+1. **Remplacez vos identifiants Sandbox** (`apiuser` et `apikey`) par vos **identifiants Live**  
+2. **Modifiez l’URL de base** de : `https://sandbox.fapshi.com` à `https://live.fapshi.com`  
+3. **Vérifiez** que votre intégration est prête pour la production  
+
+<Tip>
+Une fois que vous avez mis à jour vos identifiants et votre URL pour l’environnement live, vous êtes prêt à accepter des paiements !
+</Tip>
+
+---
+
+Besoin d’aide ? Contactez [support@fapshi.com](mailto:support@fapshi.com) ou visitez notre [Centre d’aide et support](https://fapshi.com/fr/aide-et-support).

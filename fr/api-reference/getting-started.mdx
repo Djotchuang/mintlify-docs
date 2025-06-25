@@ -1,0 +1,43 @@
+---
+title: 'Démarrer avec l’API'
+description: 'Apprenez à configurer et utiliser l’API Fapshi, de la création des clés API à l’envoi de requêtes authentifiées, en passant par la compréhension de sa structure et de ses fonctionnalités.'
+keywords: ['api fapshi', 'configuration api', 'paiements api', 'intégration de paiements', 'api développeur']
+---
+
+---
+
+L’**API Fapshi** vous permet de créer des expériences de paiement personnalisées et fluides au sein de votre site web, application ou service. Que vous souhaitiez **collecter des paiements** ou **effectuer des retraits**, l’API vous donne tout ce dont vous avez besoin pour être opérationnel **en quelques minutes**.
+
+Vous avez des questions, remarques ou suggestions ? Écrivez-nous à [support@fapshi.com](mailto:support@fapshi.com), ou rejoignez notre [communauté Slack pour développeurs](https://fapshicommunity.slack.com/archives/C034Q50QB6U). Nous sommes toujours à l’écoute — du bon, du moins bon, des confusions et de vos idées d’amélioration.
+
+## Prérequis
+
+Avant de commencer, assurez-vous d’avoir :
+
+- Un [compte Fapshi](https://dashboard.fapshi.com/register)
+- Un compte [activé](/fr/guides/getting-started/activate-account)
+- Un service [créé via votre tableau de bord](/fr/api-reference/create-a-service) (ce qui vous fournira votre [clé API et utilisateur API](/fr/api-reference/preliminary-knowledge/api-credentials))
+
+<Note>
+Si vous débutez avec l’API, nous vous recommandons de lire d’abord la section [Connaissances Préliminaires](/fr/api-reference/preliminary-knowledge), qui contient les bases sur l’authentification, le format des requêtes et réponses, ainsi que les règles générales d’interaction avec l’API.
+</Note>
+
+## Ce que vous pouvez faire avec l’API
+
+L’API Fapshi permet deux grandes opérations :
+
+### 1. **Collecter des paiements**
+
+Vous pouvez collecter des paiements via :
+
+- [`Initiate Pay`](/fr/api-reference/endpoints/initiate-pay) : Fournit une page de paiement préconçue hébergée par Fapshi où vos clients peuvent finaliser leur transaction. Idéal pour une mise en place rapide.
+
+- [`Direct Pay`](/fr/api-reference/endpoints/direct-pay) : Offre un contrôle total. Vous concevez votre propre formulaire de paiement et gérez l’expérience utilisateur, tandis que notre backend traite la transaction.
+
+### 2. **Effectuer des retraits**
+
+Envoyez de l’argent vers un ou plusieurs comptes Mobile Money via notre [endpoint de retrait](/fr/api-reference/endpoints/payout). Idéal pour les paiements fournisseurs, salaires, ou services financiers.
+
+---
+
+Vous êtes maintenant prêt à commencer ! Consultez la section [Référence API](/fr/api-reference/) pour découvrir tous les endpoints, paramètres, réponses, et exemples d’utilisation.

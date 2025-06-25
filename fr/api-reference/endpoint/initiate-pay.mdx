@@ -1,0 +1,35 @@
+---
+title: "Générer un lien de paiement"
+description: "Créez un lien de paiement pour rediriger les utilisateurs vers une page de paiement hébergée par Fapshi."
+keywords: ["générer lien de paiement", "lien paiement fapshi", "créer lien paiement", "api paiement", "initier paiement"]
+openapi: '/fr/api-reference/openapi.json POST /initiate-pay'
+---
+
+## Endpoint
+
+`POST /initiate-pay`
+
+Générez un lien de paiement où les utilisateurs pourront compléter leur paiement sur une page de paiement préconstruite par Fapshi.
+
+## Paramètres
+
+| Nom          | Obligatoire | Type    | Description                                                                                          |
+|:-------------|:------------|:--------|:--------------------------------------------------------------------------------------------------|
+| amount       | Oui         | entier  | Montant à payer (minimum 100 XAF).                                                                |
+| email        | Non         | chaîne  | Si renseigné, l’utilisateur n’aura pas à fournir son email lors du paiement.                       |
+| redirectUrl  | Non         | chaîne  | URL vers laquelle l’utilisateur sera redirigé après le paiement.                                  |
+| userId       | Non         | chaîne  | ID utilisateur interne (1-100 caractères ; a-z, A-Z, 0-9, -, _).                                  |
+| externalId   | Non         | chaîne  | ID de transaction/commande pour réconciliation (1-100 caractères ; a-z, A-Z, 0-9, -, _).          |
+| message      | Non         | chaîne  | Raison du paiement.                                                                                 |
+
+## Réponse
+
+- `200 OK` avec un corps JSON contenant :
+  - `message` : message de succès
+  - `link` : URL où l’utilisateur doit effectuer le paiement  
+  - `transId` : ID de la transaction pour suivre le statut du paiement
+  - `dateInitiated` : date de début du paiement
+
+- En cas d’erreur, retournera un code 4XX avec un message expliquant l’échec.
+
+<Note>Les liens de paiement expirent au bout de 24 heures et ne peuvent plus être utilisés après cette période.</Note>

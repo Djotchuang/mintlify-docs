@@ -1,90 +1,101 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "OpenAPI Plant Store",
-    "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
-    "license": {
-      "name": "MIT"
-    },
+    "title": "API de Paiement Fapshi",
+    "description": "API pour générer des liens de paiement, des paiements directs, la surveillance des transactions, les paiements sortants, et plus encore.",
     "version": "1.0.0"
   },
   "servers": [
     {
-      "url": "http://sandbox.mintlify.com"
+      "url": "https://sandbox.fapshi.com"
     }
   ],
   "security": [
     {
-      "bearerAuth": []
+      "apiAuth": [],
+      "apiKey": []
     }
   ],
   "paths": {
-    "/plants": {
-      "get": {
-        "description": "Returns all plants from the system that the user has access to",
-        "parameters": [
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "The maximum number of results to return",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
+    "/initiate-pay": {
+      "post": {
+        "summary": "Générer un Lien de Paiement",
+        "description": "Créer un lien de paiement où les utilisateurs finalisent le paiement sur une page de paiement hébergée par Fapshi.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "type": "integer",
+                    "minimum": 100,
+                    "description": "Montant à payer (minimum 100 XAF)."
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "Email de l'utilisateur facultatif à ignorer lors du paiement."
+                  },
+                  "redirectUrl": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "URL de redirection après le paiement."
+                  },
+                  "userId": {
+                    "type": "string",
+                    "pattern": "^[a-zA-Z0-9\\-_]{1,100}$",
+                    "description": "Identifiant interne de l'utilisateur (1-100 caractères ; a-z, A-Z, 0-9, -, _)."
+                  },
+                  "externalId": {
+                    "type": "string",
+                    "pattern": "^[a-zA-Z0-9\\-_]{1,100}$",
+                    "description": "Identifiant de transaction/commande pour la réconciliation (1-100 caractères ; a-z, A-Z, 0-9, -, _)."
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "Motif du paiement."
+                  }
+                },
+                "required": ["amount"]
+              }
             }
           }
-        ],
+        },
         "responses": {
           "200": {
-            "description": "Plant response",
+            "description": "Lien de paiement généré avec succès",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Plant"
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Message de succès"
+                    },
+                    "link": {
+                      "type": "string",
+                      "format": "uri",
+                      "description": "URL pour rediriger l'utilisateur afin de compléter le paiement."
+                    },
+                    "transId": {
+                      "type": "string",
+                      "description": "Identifiant de la transaction pour le paiement."
+                    },
+                    "dateInitiated": {
+                      "type": "string",
+                      "format": "date",
+                      "description": "Date à laquelle le paiement a été initié."
+                    }
                   }
                 }
               }
             }
           },
-          "400": {
-            "description": "Unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "description": "Creates a new plant in the store",
-        "requestBody": {
-          "description": "Plant to add to the store",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewPlant"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "plant response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Plant"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "unexpected error",
+          "4XX": {
+            "description": "Erreur client, par exemple, requête ou paramètres invalides.",
             "content": {
               "application/json": {
                 "schema": {
@@ -96,28 +107,510 @@
         }
       }
     },
-    "/plants/{id}": {
-      "delete": {
-        "description": "Deletes a single plant based on the ID supplied",
+    "/direct-pay": {
+      "post": {
+        "summary": "Initier une Demande de Paiement Direct",
+        "description": "Envoyer une demande de paiement directement sur l'appareil mobile d'un utilisateur pour confirmation.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "type": "integer",
+                    "minimum": 100,
+                    "description": "Montant à payer (minimum 100 XAF)."
+                  },
+                  "phone": {
+                    "type": "string",
+                    "description": "Numéro de téléphone où la demande de paiement est envoyée."
+                  },
+                  "medium": {
+                    "type": "string",
+                    "enum": ["mobile money", "orange money"],
+                    "description": "Moyen de paiement (facultatif)."
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Nom du payeur (facultatif)."
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "Email du payeur pour les reçus (facultatif)."
+                  },
+                  "userId": {
+                    "type": "string",
+                    "pattern": "^[a-zA-Z0-9\\-_]{1,100}$",
+                    "description": "Identifiant interne de l'utilisateur (facultatif)."
+                  },
+                  "externalId": {
+                    "type": "string",
+                    "pattern": "^[a-zA-Z0-9\\-_]{1,100}$",
+                    "description": "Identifiant de transaction/commande pour la réconciliation (facultatif)."
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "Motif du paiement (facultatif)."
+                  }
+                },
+                "required": ["amount", "phone"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Accepté",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Message de succès"
+                    },
+                    "transId": {
+                      "type": "string",
+                      "description": "Identifiant de la transaction pour le paiement."
+                    },
+                    "dateInitiated": {
+                      "type": "string",
+                      "format": "date",
+                      "description": "Date à laquelle le paiement a été initié."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Erreur client, par exemple, identifiants ou paramètres invalides.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payment-status/{transId}": {
+      "get": {
+        "summary": "Obtenir le Statut d'une Transaction de Paiement",
+        "description": "Récupérer le statut d'une transaction de paiement par son identifiant de transaction.",
         "parameters": [
           {
-            "name": "id",
+            "name": "transId",
             "in": "path",
-            "description": "ID of plant to delete",
             "required": true,
             "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
+              "type": "string"
+            },
+            "description": "Identifiant de la transaction du paiement."
           }
         ],
         "responses": {
-          "204": {
-            "description": "Plant deleted",
-            "content": {}
+          "200": {
+            "description": "Statut du paiement récupéré avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Transaction"
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Identifiant de transaction invalide ou erreur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/expire-pay": {
+      "post": {
+        "summary": "Expirer une Transaction de Paiement",
+        "description": "Invalider un lien de paiement pour empêcher d'autres paiements.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "transId": {
+                    "type": "string",
+                    "description": "Identifiant de la transaction à expirer."
+                  }
+                },
+                "required": ["transId"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Lien de paiement expiré avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "transId": {
+                      "type": "string",
+                      "description": "Identifiant de la transaction du paiement."
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": ["EXPIRED"],
+                      "description": "Statut de la transaction"
+                    },
+                    "medium": {
+                      "type": "string",
+                      "enum": ["mobile money", "orange money"],
+                      "description": "Méthode de paiement"
+                    },
+                    "serviceName": {
+                      "type": "string",
+                      "description": "Nom du service utilisé"
+                    },
+                    "amount": {
+                      "type": "integer",
+                      "description": "Montant de la transaction"
+                    },
+                    "revenue": {
+                      "type": "integer",
+                      "description": "Montant reçu après déduction des frais Fapshi"
+                    },
+                    "payerName": {
+                      "type": "string",
+                      "description": "Nom du client"
+                    },
+                    "email": {
+                      "type": "string",
+                      "format": "email",
+                      "description": "Email du client"
+                    },
+                    "redirectUrl": {
+                      "type": "string",
+                      "format": "uri",
+                      "description": "URL de redirection après le paiement"
+                    },
+                    "externalId": {
+                      "type": "string",
+                      "description": "Identifiant de la transaction sur votre application"
+                    },
+                    "userId": {
+                      "type": "string",
+                      "description": "Identifiant du client sur votre application"
+                    },
+                    "webhook": {
+                      "type": "string",
+                      "format": "uri",
+                      "description": "Le webhook que vous avez défini pour votre service"
+                    },
+                    "financialTransId": {
+                      "type": "string",
+                      "description": "Identifiant de la transaction avec l'opérateur de paiement"
+                    },
+                    "dateInitiated": {
+                      "type": "string",
+                      "format": "date",
+                      "description": "Date à laquelle le paiement a été initié"
+                    },
+                    "dateConfirmed": {
+                      "type": "string",
+                      "format": "date",
+                      "description": "Date à laquelle le paiement a été effectué"
+                    }
+                  }
+                }
+              }
+            }
           },
           "400": {
-            "description": "unexpected error",
+            "description": "Lien déjà expiré ou requête invalide",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transaction/{userId}": {
+      "get": {
+        "summary": "Obtenir les Transactions par Identifiant Utilisateur",
+        "description": "Récupérer toutes les transactions associées à un identifiant utilisateur spécifique.",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9\\-_]{1,100}$"
+            },
+            "description": "Identifiant utilisateur pour récupérer les transactions."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Liste des transactions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Transaction"
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Identifiant utilisateur invalide ou erreur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/search": {
+      "get": {
+        "summary": "Rechercher des Transactions",
+        "description": "Rechercher des transactions par divers filtres.",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": ["created", "successful", "failed", "expired"]
+            },
+            "description": "Filtrer par statut de transaction."
+          },
+          {
+            "name": "medium",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": ["mobile money", "orange money"]
+            },
+            "description": "Filtrer par moyen de paiement."
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "description": "Date de début (AAAA-MM-JJ)."
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "description": "Date de fin (AAAA-MM-JJ)."
+          },
+          {
+            "name": "amt",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Montant exact à filtrer."
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 10
+            },
+            "description": "Nombre maximum de résultats."
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": ["asc", "desc"],
+              "default": "desc"
+            },
+            "description": "Ordre de tri."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Liste filtrée des transactions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Transaction"
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Paramètres de requête invalides ou erreur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/balance": {
+      "get": {
+        "summary": "Obtenir le Solde du Service",
+        "description": "Retourne le solde actuel du compte de service.",
+        "responses": {
+          "200": {
+            "description": "Solde actuel retourné",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "service": {
+                      "type": "string",
+                      "description": "Le service dont vous avez interrogé le solde."
+                    },
+                    "balance": {
+                      "type": "integer",
+                      "description": "Montant du solde actuel."
+                    },
+                    "currency": {
+                      "type": "string",
+                      "description": "Devise."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payout": {
+      "post": {
+        "summary": "Effectuer un Paiement Sortant",
+        "description": "Envoyer de l'argent sur le compte mobile money ou bancaire d'un utilisateur via un service activé pour les paiements sortants.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "type": "integer",
+                    "minimum": 100,
+                    "description": "Montant à envoyer (minimum 100 XAF)."
+                  },
+                  "phone": {
+                    "type": "string",
+                    "description": "Numéro de téléphone du destinataire."
+                  },
+                  "medium": {
+                    "type": "string",
+                    "enum": ["mobile money", "orange money"],
+                    "description": "Moyen de paiement (facultatif)."
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Nom du destinataire (facultatif)."
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "Email du destinataire pour le reçu de paiement (facultatif)."
+                  },
+                  "userId": {
+                    "type": "string",
+                    "pattern": "^[a-zA-Z0-9\\-_]{1,100}$",
+                    "description": "Identifiant utilisateur pour le suivi du paiement (facultatif)."
+                  },
+                  "externalId": {
+                    "type": "string",
+                    "pattern": "^[a-zA-Z0-9\\-_]{1,100}$",
+                    "description": "Identifiant de transaction/commande pour la réconciliation (facultatif)."
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "Motif du paiement (facultatif)."
+                  }
+                },
+                "required": ["amount", "phone"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Accepté",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Message de succès"
+                    },
+                    "transId": {
+                      "type": "string",
+                      "description": "Identifiant de la transaction pour le paiement."
+                    },
+                    "dateInitiated": {
+                      "type": "string",
+                      "format": "date",
+                      "description": "Date à laquelle le paiement a été initié."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Requête invalide ou permissions insuffisantes",
             "content": {
               "application/json": {
                 "schema": {
@@ -131,86 +624,131 @@
     }
   },
   "webhooks": {
-    "/plant/webhook": {
+    "/webhook/payment-status": {
       "post": {
-        "description": "Information about a new plant added to the store",
-        "requestBody": {
-          "description": "Plant added to the store",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewPlant"
-              }
-            }
-          }
-        },
+        "description": "Notifie votre application lorsque le statut d'un paiement change (RÉUSSI, ÉCHOUÉ, EXPIRÉ).",
         "responses": {
           "200": {
-            "description": "Return a 200 status to indicate that the data was received successfully"
+            "description": "Accusé de réception du webhook",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Transaction"
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Paramètres de requête invalides ou erreur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
           }
         }
       }
     }
   },
   "components": {
-    "schemas": {
-      "Plant": {
-        "required": [
-          "name"
-        ],
-        "type": "object",
-        "properties": {
-          "name": {
-            "description": "The name of the plant",
-            "type": "string"
-          },
-          "tag": {
-            "description": "Tag to specify the type",
-            "type": "string"
-          }
-        }
+    "securitySchemes": {
+      "apiAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "apiuser"
       },
-      "NewPlant": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Plant"
-          },
-          {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "Identification number of the plant",
-                "type": "integer",
-                "format": "int64"
-              }
-            }
-          }
-        ]
-      },
-      "Error": {
-        "required": [
-          "error",
-          "message"
-        ],
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "message": {
-            "type": "string"
-          }
-        }
+      "apiKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "apikey"
       }
     },
-    "securitySchemes": {
-      "bearerAuth": {
-        "type": "http",
-        "scheme": "bearer"
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Message d'erreur."
+          }
+        }
+      },
+      "Transaction": {
+        "type": "object",
+        "properties": {
+          "transId": {
+            "type": "string",
+            "description": "Identifiant de la transaction du paiement."
+          },
+          "status": {
+            "type": "string",
+            "enum": ["CREATED", "PENDING", "SUCCESSFUL", "FAILED", "EXPIRED"],
+            "description": "Statut de la transaction"
+          },
+          "medium": {
+            "type": "string",
+            "enum": ["mobile money", "orange money"],
+            "description": "Méthode de paiement"
+          },
+          "serviceName": {
+            "type": "string",
+            "description": "Nom du service utilisé"
+          },
+          "amount": {
+            "type": "integer",
+            "description": "Montant de la transaction"
+          },
+          "revenue": {
+            "type": "integer",
+            "description": "Montant reçu après déduction des frais Fapshi"
+          },
+          "payerName": {
+            "type": "string",
+            "description": "Nom du client"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "Email du client"
+          },
+          "redirectUrl": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL de redirection après le paiement"
+          },
+          "externalId": {
+            "type": "string",
+            "description": "Identifiant de la transaction sur votre application"
+          },
+          "userId": {
+            "type": "string",
+            "description": "Identifiant du client sur votre application"
+          },
+          "webhook": {
+            "type": "string",
+            "format": "uri",
+            "description": "Le webhook que vous avez défini pour votre service"
+          },
+          "financialTransId": {
+            "type": "string",
+            "description": "Identifiant de la transaction avec l'opérateur de paiement"
+          },
+          "dateInitiated": {
+            "type": "string",
+            "format": "date",
+            "description": "Date à laquelle le paiement a été initié"
+          },
+          "dateConfirmed": {
+            "type": "string",
+            "format": "date",
+            "description": "Date à laquelle le paiement a été effectué"
+          }
+        }
       }
     }
   }

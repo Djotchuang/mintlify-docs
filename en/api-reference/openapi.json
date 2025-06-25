@@ -272,56 +272,71 @@
                   "type": "object",
                   "properties": {
                     "transId": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Transaction ID of the payment."
                     },
                     "status": {
                       "type": "string",
-                      "enum": ["EXPIRED"]
+                      "enum": ["EXPIRED"],
+                      "description": "Transaction status"
                     },
                     "medium": {
                       "type": "string",
-                      "enum": ["mobile money", "orange money"]
+                      "enum": ["mobile money", "orange money"],
+                      "description": "Payment method"
                     },
                     "serviceName": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Name of the service in use"
                     },
                     "amount": {
-                      "type": "integer"
+                      "type": "integer",
+                      "description": "Transaction amount"
                     },
                     "revenue": {
-                      "type": "integer"
+                      "type": "integer",
+                      "description": "Amount received when Fapshi fees have been deducted"
                     },
                     "payerName": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Client name"
                     },
                     "email": {
                       "type": "string",
-                      "format": "email"
+                      "format": "email",
+                      "description": "Client email"
                     },
                     "redirectUrl": {
                       "type": "string",
-                      "format": "uri"
+                      "format": "uri",
+                      "description": "URL to redirect after payment"
                     },
                     "externalId": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "The transaction ID on your application"
                     },
                     "userId": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "ID of the client on your application"
                     },
                     "webhook": {
                       "type": "string",
-                      "format": "uri"
+                      "format": "uri",
+                      "description": "The webhook you defined for your service"
                     },
                     "financialTransId": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Transaction ID with the payment operator"
                     },
                     "dateInitiated": {
                       "type": "string",
-                      "format": "date"
+                      "format": "date",
+                      "description": "Date when the payment was initiated"
                     },
                     "dateConfirmed": {
                       "type": "string",
-                      "format": "date"
+                      "format": "date",
+                      "description": "Date when the payment was made"
                     }
                   }
                 }

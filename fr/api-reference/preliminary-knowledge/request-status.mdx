@@ -1,0 +1,58 @@
+---
+title: 'Statut des Requêtes'
+description: 'Comprenez comment l’API Fapshi gère les requêtes réussies ou échouées, y compris les codes de réponse HTTP et les règles de formatage.'
+keywords: ['statut api fapshi', 'codes de réponse api', 'erreurs 4xx fapshi', 'format json api', 'codes http fapshi']
+---
+
+---
+
+Lors de l’interaction avec l’**API de paiement Fapshi**, il est important de comprendre comment le système répond aux différents types de requêtes. Cela vous permet de gérer correctement les erreurs et les transactions réussies dans votre application.
+
+## ✅ Requêtes Réussies
+
+Toute requête réussie renverra un **code de statut HTTP `200`**, indiquant que l’opération a été correctement traitée.  
+Le contenu du corps de la réponse dépendra de l’endpoint utilisé, mais il sera toujours structuré au format **JSON**.
+
+**Exemple de réponse pour une requête réussie :**
+
+```json
+{
+  "message": "Requête réussie",
+  "link": "https://checkout.fapshi.com/payment/685ac112ea66cd72c5e6cf1e",
+  "transId": "ll7J2fl4",
+  "dateInitiated": "2025-06-25T11:34:04.450Z" 
+}
+```
+
+## ❌ Requêtes Échouées
+
+En cas d’erreur, Fapshi renverra un **code d’erreur HTTP 4XX**, selon la nature du problème :
+
+- **400** – Requête incorrecte (paramètres manquants ou mal formés)  
+- **403** – Accès interdit (identifiants invalides)  
+- **404** – Introuvable (ressource inexistante)  
+
+Le corps de la réponse contiendra toujours un champ `message` fournissant une explication claire du motif de l’échec.
+
+**Exemple de réponse pour une requête échouée :**
+
+```json
+{
+  "message": "Identifiants API invalides"
+}
+```
+
+<Warning> Assurez-vous de toujours lire le champ `message` de la réponse afin d’identifier la cause de l’échec et d’orienter votre débogage. </Warning>
+
+## 🔁 Règles de Formatage des Requêtes
+
+Pour éviter les échecs inattendus, respectez les règles suivantes :
+
+- Tous les corps de requête doivent être encodés en **JSON**.
+- Les **requêtes GET ne doivent pas contenir de corps**. Si un corps est inclus dans une requête GET, l’API retournera immédiatement une erreur.
+
+<Note> Vous pouvez retrouver des implémentations des endpoints API dans différents langages de programmation sur notre [repo GitHub SDK](https://github.com/Fapshi/SDKs). </Note>
+
+---
+
+Besoin d’aide ? Contactez-nous à [support@fapshi.com](mailto:support@fapshi.com) ou visitez notre [Centre d’aide et support](https://fapshi.com/fr/aide-et-support).
