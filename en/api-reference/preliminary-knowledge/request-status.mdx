@@ -1,7 +1,62 @@
 ---
 title: 'Request Status'
-description: ''
-keywords: 
+description: 'Understand how Fapshi API handles successful and failed requests, including response codes and formatting guidelines.'
+keywords: ['fapshi api status', 'api response codes', 'fapshi 4xx errors', 'api json format', 'http status codes']
 ---
 
 ---
+
+When interacting with the **Fapshi Payment API**, it’s important to understand how the system responds to different types of requests. This helps in properly handling errors and managing successful transactions within your application.
+
+## ✅ Successful Requests
+
+Any successful request made to the API will return an HTTP **status code of `200`**, indicating that the operation was processed correctly.  
+The content of the response body will vary depending on the endpoint you called, but you can always expect structured data in a JSON format.
+
+**Example response for a successful request:**
+
+```json
+{
+  "message": "Request successful",
+  "link": "https://checkout.fapshi.com/payment/685ac112ea66cd72c5e6cf1e",
+  "transId": "ll7J2fl4",
+  "dateInitiated": "2025-06-25T11:34:04.450Z" 
+}
+```
+
+## ❌ Failed Requests
+
+If something goes wrong, Fapshi will return a **4XX HTTP error code**, depending on the nature of the issue:
+
+- **400** – Bad Request (e.g., missing or malformed parameters)
+- **403** – Forbidden (e.g., invalid credentials)
+- **404** – Not Found (e.g., resource doesn’t exist)
+
+The body of the response will always contain a `message` field that gives a clear explanation of the failure reason.
+
+**Example error response:**
+
+```json
+{
+  "message": "Invalid API credentials"
+}
+```
+
+<Warning>
+Make sure to always read the `message` field of the response to determine the reason for failure and guide your debugging process.
+</Warning>
+
+## 🔁 Request Formatting Guidelines
+
+To avoid unexpected failures, keep in mind the following formatting rules:
+
+- All request bodies must be **JSON encoded**.
+- **GET requests must not contain a body**. If you include a body in a GET request, the API will immediately return an error.
+
+<Note>
+You can find SDK implementations of all API endpoints in different programming languages in our [GitHub SDK repository](https://github.com/Fapshi/SDKs).
+</Note>
+
+---
+
+Need help? Contact us at [support@fapshi.com](mailto:support@fapshi.com) or visit our [Help & Support Center](https://fapshi.com/en/help-and-support).

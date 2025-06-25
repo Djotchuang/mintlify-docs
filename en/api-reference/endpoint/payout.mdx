@@ -1,0 +1,27 @@
+---
+title: "Make a Payout"
+description: "Send money to a user’s mobile money account or bank via a payout service."
+keywords: ["make payout", "send money", "fapshi payout", "bulk payments", "payment API"]
+openapi: 'POST /payout'
+---
+
+# Make a Payout
+
+**Endpoint:** `POST /payout`
+
+Send money to a user’s mobile money account or bank via a payout service.
+
+> **Warning:** After enabling payouts for a service, that service can no longer collect payments. Use separate services for collections and payouts.
+
+## Parameters
+
+| Name       | Required | Type    | Description                                                                                           |
+|------------|----------|---------|---------------------------------------------------------------------------------------------------|
+| amount     | Yes      | integer | Amount to send (minimum 100).                                                                       |
+| phone      | Yes      | string  | Recipient phone number (e.g., 67XXXXXXX).                                                          |
+| medium     | No       | string  | `"mobile money"` or `"orange money"`. Auto-detected if omitted.                                   |
+| name       | No       | string  | Recipient’s name.                                                                                   |
+| email      | No       | string  | Recipient’s email for payout confirmation receipt.                                                |
+| userId     | No       | string  | Your system’s user ID for payout tracking (1-100 chars; allowed: a-z, A-Z, 0-9, -, _).            |
+| externalId | No       | string  | Transaction/order ID for reconciliation (1-100 chars; allowed: a-z, A-Z, 0-9, -, _).              |
+| message    | No       | string  | Description or reason for payout.                                                                  |

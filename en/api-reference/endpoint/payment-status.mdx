@@ -1,0 +1,24 @@
+---
+title: "Get Payment Transaction Status"
+description: "Retrieve the status of a payment transaction using its transaction ID."
+keywords: ["payment status", "transaction status", "fapshi payment status", "check payment", "payment API"]
+openapi: 'GET /payment-status/{transId}'
+---
+
+# Get Payment Transaction Status
+
+**Endpoint:** `GET /payment-status/:transId`
+
+Check the status of a payment by transaction ID.
+
+## Status Values
+
+| Status     | Meaning                                                                           |
+|------------|-----------------------------------------------------------------------------------|
+| CREATED    | Payment not yet attempted.                                                        |
+| PENDING    | User is in process of payment.                                                   |
+| SUCCESSFUL | Payment completed successfully.                                                  |
+| FAILED     | Payment failed.                                                                  |
+| EXPIRED    | Payment link expired or manually expired.                                       |
+
+> **Note:** No payments can be made after a status is SUCCESSFUL or EXPIRED.

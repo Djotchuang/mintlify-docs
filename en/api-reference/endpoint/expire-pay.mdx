@@ -1,0 +1,23 @@
+---
+title: "Expire a Payment Transaction"
+description: "Expire a payment link to prevent further payments."
+keywords: ["expire payment", "cancel payment link", "invalidate payment", "payment API", "expire-pay"]
+openapi: 'POST /expire-pay'
+---
+
+# Expire a Payment Transaction
+
+**Endpoint:** `POST /expire-pay`
+
+Expire a payment link to prevent further payments.
+
+## Parameters
+
+| Name    | Required | Type   | Description                      |
+|---------|----------|--------|--------------------------------|
+| transId | Yes      | string | ID of the transaction to expire |
+
+## Response
+
+- Returns details of the expired transaction if successful.  
+- Returns `400 Bad Request` with message `"Link already expired"` if the transaction was already expired.

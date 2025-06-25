@@ -1,90 +1,101 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "OpenAPI Plant Store",
-    "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
-    "license": {
-      "name": "MIT"
-    },
+    "title": "Fapshi Payment API",
+    "description": "API for generating payment links, direct payments, transaction monitoring, payouts, and more.",
     "version": "1.0.0"
   },
   "servers": [
     {
-      "url": "http://sandbox.mintlify.com"
+      "url": "https://sandbox.fapshi.com"
     }
   ],
   "security": [
     {
-      "bearerAuth": []
+      "apiAuth": [],
+      "apiKey": []
     }
   ],
   "paths": {
-    "/plants": {
-      "get": {
-        "description": "Returns all plants from the system that the user has access to",
-        "parameters": [
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "The maximum number of results to return",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Plant response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Plant"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
+    "/initiate-pay": {
       "post": {
-        "description": "Creates a new plant in the store",
+        "summary": "Generate a Payment Link",
+        "description": "Create a payment link where users complete payment on a Fapshi-hosted checkout page.",
         "requestBody": {
-          "description": "Plant to add to the store",
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewPlant"
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "type": "integer",
+                    "minimum": 100,
+                    "description": "Amount to be paid (minimum 100 XAF)."
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "Optional user email to skip during payment."
+                  },
+                  "redirectUrl": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "URL to redirect after payment."
+                  },
+                  "userId": {
+                    "type": "string",
+                    "pattern": "^[a-zA-Z0-9\\-_]{1,100}$",
+                    "description": "Internal user ID (1-100 chars; a-z, A-Z, 0-9, -, _)."
+                  },
+                  "externalId": {
+                    "type": "string",
+                    "pattern": "^[a-zA-Z0-9\\-_]{1,100}$",
+                    "description": "Transaction/order ID for reconciliation."
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "Reason for payment."
+                  }
+                },
+                "required": ["amount"]
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
-            "description": "plant response",
+            "description": "Payment link generated successfully",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Plant"
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Success message"
+                    },
+                    "link": {
+                      "type": "string",
+                      "format": "uri",
+                      "description": "URL to redirect the user to complete payment."
+                    },
+                    "transId": {
+                      "type": "string",
+                      "description": "Transaction ID for payment."
+                    },
+                    "dateInitiated": {
+                      "type": "string",
+                      "description": "Date when the payment was initiated."
+                    }
+                  },
+                  "required": ["message", "link", "transId", "dateInitiated"]
                 }
               }
             }
           },
-          "400": {
-            "description": "unexpected error",
+          "4XX": {
+            "description": "Client error, e.g., invalid request or parameters.",
             "content": {
               "application/json": {
                 "schema": {
@@ -96,28 +107,492 @@
         }
       }
     },
-    "/plants/{id}": {
-      "delete": {
-        "description": "Deletes a single plant based on the ID supplied",
+    "/direct-pay": {
+      "post": {
+        "summary": "Initiate a Direct Payment Request",
+        "description": "Send a payment request directly to a user's mobile device for confirmation.",
+        "security": [
+          {
+            "apiAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "type": "integer",
+                    "minimum": 100,
+                    "description": "Amount to be paid (minimum 100)."
+                  },
+                  "phone": {
+                    "type": "string",
+                    "description": "Phone number where payment request is sent."
+                  },
+                  "medium": {
+                    "type": "string",
+                    "enum": ["mobile money", "orange money"],
+                    "description": "Payment medium (optional)."
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the payer (optional)."
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "Email of the payer for receipts (optional)."
+                  },
+                  "userId": {
+                    "type": "string",
+                    "pattern": "^[a-zA-Z0-9\\-_]{1,100}$",
+                    "description": "Internal user ID (optional)."
+                  },
+                  "externalId": {
+                    "type": "string",
+                    "pattern": "^[a-zA-Z0-9\\-_]{1,100}$",
+                    "description": "Transaction/order ID for reconciliation (optional)."
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "Reason for payment (optional)."
+                  }
+                },
+                "required": ["amount", "phone"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Direct payment request accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "transId": {
+                      "type": "string",
+                      "description": "Transaction ID for the payment."
+                    }
+                  },
+                  "required": ["transId"]
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Client error, e.g., invalid credentials or parameters.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payment-status/{transId}": {
+      "get": {
+        "summary": "Get Payment Transaction Status",
+        "description": "Retrieve the status of a payment transaction by its transaction ID.",
+        "security": [
+          {
+            "apiAuth": []
+          }
+        ],
         "parameters": [
           {
-            "name": "id",
+            "name": "transId",
             "in": "path",
-            "description": "ID of plant to delete",
             "required": true,
             "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
+              "type": "string"
+            },
+            "description": "Transaction ID of the payment."
           }
         ],
         "responses": {
-          "204": {
-            "description": "Plant deleted",
-            "content": {}
+          "200": {
+            "description": "Payment status retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "transId": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "CREATED",
+                        "PENDING",
+                        "SUCCESSFUL",
+                        "FAILED",
+                        "EXPIRED"
+                      ],
+                      "description": "Status of the payment."
+                    },
+                    "amount": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["transId", "status"]
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Invalid transaction ID or error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/expire-pay": {
+      "post": {
+        "summary": "Expire a Payment Transaction",
+        "description": "Invalidate a payment link to prevent further payments.",
+        "security": [
+          {
+            "apiAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "transId": {
+                    "type": "string",
+                    "description": "Transaction ID to expire."
+                  }
+                },
+                "required": ["transId"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Payment link expired successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "transId": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": ["EXPIRED"]
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["transId", "status", "message"]
+                }
+              }
+            }
           },
           "400": {
-            "description": "unexpected error",
+            "description": "Link already expired or invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transaction/{userId}": {
+      "get": {
+        "summary": "Get Transactions by User ID",
+        "description": "Retrieve all transactions associated with a specific user ID.",
+        "security": [
+          {
+            "apiAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9\\-_]{1,100}$"
+            },
+            "description": "User ID to retrieve transactions for."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of transactions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Transaction"
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Invalid user ID or error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/search": {
+      "get": {
+        "summary": "Search Transactions",
+        "description": "Search transactions by various filters.",
+        "security": [
+          {
+            "apiAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": ["created", "successful", "failed", "expired"]
+            },
+            "description": "Filter by transaction status."
+          },
+          {
+            "name": "medium",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": ["mobile money", "orange money", "card"]
+            },
+            "description": "Filter by payment medium."
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "description": "Start date (YYYY-MM-DD)."
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "description": "End date (YYYY-MM-DD)."
+          },
+          {
+            "name": "amt",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Exact amount to filter."
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 10
+            },
+            "description": "Maximum number of results."
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": ["asc", "desc"],
+              "default": "desc"
+            },
+            "description": "Sort order."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Filtered list of transactions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Transaction"
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Invalid query parameters or error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/balance": {
+      "get": {
+        "summary": "Get Service Balance",
+        "description": "Returns the current balance of the service account.",
+        "security": [
+          {
+            "apiAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Current balance returned",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "balance": {
+                      "type": "integer",
+                      "description": "Current balance amount."
+                    }
+                  },
+                  "required": ["balance"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payout": {
+      "post": {
+        "summary": "Make a Payout",
+        "description": "Send money to a user’s mobile money account or bank via a payout-enabled service.",
+        "security": [
+          {
+            "apiAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "type": "integer",
+                    "minimum": 100,
+                    "description": "Amount to send (minimum 100)."
+                  },
+                  "phone": {
+                    "type": "string",
+                    "description": "Recipient phone number."
+                  },
+                  "medium": {
+                    "type": "string",
+                    "enum": ["mobile money", "orange money"],
+                    "description": "Payment medium (optional)."
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Recipient name (optional)."
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "Recipient email for payout receipt (optional)."
+                  },
+                  "userId": {
+                    "type": "string",
+                    "pattern": "^[a-zA-Z0-9\\-_]{1,100}$",
+                    "description": "User ID for payout tracking (optional)."
+                  },
+                  "externalId": {
+                    "type": "string",
+                    "pattern": "^[a-zA-Z0-9\\-_]{1,100}$",
+                    "description": "Transaction/order ID for reconciliation (optional)."
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "Reason for payout (optional)."
+                  }
+                },
+                "required": ["amount", "phone"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Payout initiated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "transId": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "Current status of the payout."
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["transId", "status"]
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Invalid request or insufficient permissions",
             "content": {
               "application/json": {
                 "schema": {
@@ -131,86 +606,72 @@
     }
   },
   "webhooks": {
-    "/plant/webhook": {
+    "/webhook/payment-status": {
       "post": {
-        "description": "Information about a new plant added to the store",
+        "description": "Notifies your application when the status of a payment changes (SUCCESSFUL, FAILED, EXPIRED).",
         "requestBody": {
-          "description": "Plant added to the store",
+          "description": "Payload containing payment transaction status and details.",
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewPlant"
+                "$ref": "#/components/schemas/PaymentStatus"
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "Return a 200 status to indicate that the data was received successfully"
+            "description": "Acknowledgement of webhook receipt"
           }
         }
       }
     }
   },
   "components": {
+    "securitySchemes": {
+      "apiAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "apiuser"
+      },
+      "apiKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "apikey"
+      }
+    },
     "schemas": {
-      "Plant": {
-        "required": [
-          "name"
-        ],
-        "type": "object",
-        "properties": {
-          "name": {
-            "description": "The name of the plant",
-            "type": "string"
-          },
-          "tag": {
-            "description": "Tag to specify the type",
-            "type": "string"
-          }
-        }
-      },
-      "NewPlant": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Plant"
-          },
-          {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "Identification number of the plant",
-                "type": "integer",
-                "format": "int64"
-              }
-            }
-          }
-        ]
-      },
       "Error": {
-        "required": [
-          "error",
-          "message"
-        ],
         "type": "object",
         "properties": {
-          "error": {
-            "type": "integer",
-            "format": "int32"
+          "message": {
+            "type": "string",
+            "description": "Error message."
+          }
+        },
+        "required": ["message"]
+      },
+      "Transaction": {
+        "type": "object",
+        "properties": {
+          "transId": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "integer"
+          },
+          "status": {
+            "type": "string"
+          },
+          "medium": {
+            "type": "string"
           },
           "message": {
             "type": "string"
           }
-        }
-      }
-    },
-    "securitySchemes": {
-      "bearerAuth": {
-        "type": "http",
-        "scheme": "bearer"
+        },
+        "required": ["transId", "amount", "status"]
       }
     }
   }

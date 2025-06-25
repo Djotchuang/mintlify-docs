@@ -1,0 +1,35 @@
+---
+title: "Generate a Payment Link"
+description: "Create a payment link to redirect users to a Fapshi-hosted checkout page."
+keywords: ["generate payment link", "fapshi payment link", "create payment link", "payment API", "initiate pay"]
+openapi: 'POST /initiate-pay'
+---
+
+## Endpoint
+
+`POST /initiate-pay`
+
+Generate a payment link where users complete payment on a prebuilt Fapshi checkout page.
+
+## Parameters
+
+| Name        | Required | Type    | Description                                                                                          |
+|:-------------|:----------|:---------|:--------------------------------------------------------------------------------------------------|
+| amount      | Yes      | integer | Amount to be paid (minimum 100 XAF).                                                                   |
+| email       | No       | string  | If set, the user won't have to provide an email during payment.                                          |
+| redirectUrl | No       | string  | URL to redirect the user after payment.                                                    |
+| userId      | No       | string  | Your internal user ID (1-100 chars; a-z, A-Z, 0-9, -, _).                                        |
+| externalId  | No       | string  | Transaction/order ID for reconciliation (1-100 chars; a-z, A-Z, 0-9, -, _).                      |
+| message     | No       | string  | Reason for payment. 
+
+## Response
+
+- `200 OK` with JSON body containing:
+  - `message`: success message
+  - `link`: URL for user payment  
+  - `transId`: transaction ID to track payment status
+  - `dateInitiated`: date when the payment was initiated
+
+- Errors return 4XX with a message explaining the failure.
+
+> **Note:** Payment links expire after 24 hours and cannot be used afterward.

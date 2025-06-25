@@ -56,7 +56,6 @@
               {
                 "group": "API Overview",
                 "pages": [
-                  "en/api-reference/introduction",
                   "en/api-reference/getting-started",
                   "en/api-reference/create-a-service",
                   {
@@ -72,9 +71,14 @@
               {
                 "group": "Endpoints",
                 "pages": [
-                  "en/api-reference/endpoint/get",
-                  "en/api-reference/endpoint/create",
-                  "en/api-reference/endpoint/delete",
+                  "en/api-reference/endpoint/initiate-pay",
+                  "en/api-reference/endpoint/direct-pay",
+                  "en/api-reference/endpoint/payment-status",
+                  "en/api-reference/endpoint/expire-pay",
+                  "en/api-reference/endpoint/transaction-by-user",
+                  "en/api-reference/endpoint/search-transactions",
+                  "en/api-reference/endpoint/balance",
+                  "en/api-reference/endpoint/payout",
                   "en/api-reference/endpoint/webhook"
                 ]
               }
