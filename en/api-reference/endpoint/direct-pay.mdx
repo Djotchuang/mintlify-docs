@@ -5,29 +5,34 @@ keywords: ["direct payment", "fapshi direct pay", "mobile payment request", "pay
 openapi: 'POST /direct-pay'
 ---
 
-# Initiate a Direct Payment Request
+## Endpoint
 
-**Endpoint:** `POST /direct-pay`
+`POST /direct-pay`
 
 Send a payment request directly to a user's mobile device. You are responsible for building your own checkout and verifying payment status.
 
 ## Parameters
 
-| Name       | Required | Type    | Description                                                                              |
-|------------|----------|---------|------------------------------------------------------------------------------------------|
-| amount     | Yes      | integer | Amount to be paid (minimum 100).                                                        |
+| Name       | Required | Type    | Description                                                                             |
+|:-----------|:---------|:--------|:----------------------------------------------------------------------------------------|
+| amount     | Yes      | integer | Amount to be paid (minimum 100 XAF).                                                   |
 | phone      | Yes      | string  | Phone number to request payment from (e.g., 67XXXXXXX).                                |
 | medium     | No       | string  | `"mobile money"` or `"orange money"`. Omit to auto-detect.                             |
 | name       | No       | string  | Payer’s name.                                                                           |
-| email      | No       | string  | Payer’s email to receive receipt.                                                      |
-| userId     | No       | string  | Your system’s user ID (1-100 chars; a-z, A-Z, 0-9, -, _).                              |
-| externalId | No       | string  | Transaction/order ID for reconciliation (1-100 chars; a-z, A-Z, 0-9, -, _).            |
+| email      | No       | string  | Payer’s email to receive receipt.                                                       |
+| userId     | No       | string  | Your system’s user ID (1–100 chars; a–z, A–Z, 0–9, -, _).                               |
+| externalId | No       | string  | Transaction/order ID for reconciliation (1–100 chars; a–z, A–Z, 0–9, -, _).             |
 | message    | No       | string  | Reason for payment.                                                                     |
+                                                                |
 
 ## Response
 
-- `200 OK` with JSON containing `transId` to track payment status.  
+- `200 OK` with JSON body containing:
+  - `message`: success message
+  - `transId`: transaction ID to track payment status
+  - `dateInitiated`: date when the payment was initiated
+
 - Errors return 4XX with failure message.
 
-> **Warning:** Direct payment is disabled by default on live environment; contact support to enable.  
-> Handle this endpoint with care; misuse can result in account suspension.
+<Warning> Direct payment is disabled by default on live environment; [contact support](https://wa.me/237658610472) to enable.</Warning> 
+<Danger>Handle this endpoint with care; misuse can result in account suspension.</Danger>

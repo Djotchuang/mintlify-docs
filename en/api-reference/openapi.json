@@ -51,7 +51,7 @@
                   "externalId": {
                     "type": "string",
                     "pattern": "^[a-zA-Z0-9\\-_]{1,100}$",
-                    "description": "Transaction/order ID for reconciliation."
+                    "description": "Transaction/order ID for reconciliation (1-100 chars; a-z, A-Z, 0-9, -, _)."
                   },
                   "message": {
                     "type": "string",
@@ -86,6 +86,7 @@
                     },
                     "dateInitiated": {
                       "type": "string",
+                      "format": "date",
                       "description": "Date when the payment was initiated."
                     }
                   }
@@ -110,11 +111,6 @@
       "post": {
         "summary": "Initiate a Direct Payment Request",
         "description": "Send a payment request directly to a user's mobile device for confirmation.",
-        "security": [
-          {
-            "apiAuth": []
-          }
-        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -125,7 +121,7 @@
                   "amount": {
                     "type": "integer",
                     "minimum": 100,
-                    "description": "Amount to be paid (minimum 100)."
+                    "description": "Amount to be paid (minimum 100 XAF)."
                   },
                   "phone": {
                     "type": "string",
@@ -167,18 +163,26 @@
         },
         "responses": {
           "200": {
-            "description": "Direct payment request accepted",
+            "description": "Accepted",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Success message"
+                    },
                     "transId": {
                       "type": "string",
                       "description": "Transaction ID for the payment."
+                    },
+                    "dateInitiated": {
+                      "type": "string",
+                      "format": "date",
+                      "description": "Date when the payment was initiated."
                     }
-                  },
-                  "required": ["transId"]
+                  }
                 }
               }
             }
@@ -200,11 +204,6 @@
       "get": {
         "summary": "Get Payment Transaction Status",
         "description": "Retrieve the status of a payment transaction by its transaction ID.",
-        "security": [
-          {
-            "apiAuth": []
-          }
-        ],
         "parameters": [
           {
             "name": "transId",
@@ -222,30 +221,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "transId": {
-                      "type": "string"
-                    },
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "CREATED",
-                        "PENDING",
-                        "SUCCESSFUL",
-                        "FAILED",
-                        "EXPIRED"
-                      ],
-                      "description": "Status of the payment."
-                    },
-                    "amount": {
-                      "type": "integer"
-                    },
-                    "message": {
-                      "type": "string"
-                    }
-                  },
-                  "required": ["transId", "status"]
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Transaction"
+                  }
                 }
               }
             }
@@ -267,11 +246,6 @@
       "post": {
         "summary": "Expire a Payment Transaction",
         "description": "Invalidate a payment link to prevent further payments.",
-        "security": [
-          {
-            "apiAuth": []
-          }
-        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -304,11 +278,52 @@
                       "type": "string",
                       "enum": ["EXPIRED"]
                     },
-                    "message": {
+                    "medium": {
+                      "type": "string",
+                      "enum": ["mobile money", "orange money"]
+                    },
+                    "serviceName": {
                       "type": "string"
+                    },
+                    "amount": {
+                      "type": "integer"
+                    },
+                    "revenue": {
+                      "type": "integer"
+                    },
+                    "payerName": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string",
+                      "format": "email"
+                    },
+                    "redirectUrl": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "externalId": {
+                      "type": "string"
+                    },
+                    "userId": {
+                      "type": "string"
+                    },
+                    "webhook": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "financialTransId": {
+                      "type": "string"
+                    },
+                    "dateInitiated": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "dateConfirmed": {
+                      "type": "string",
+                      "format": "date"
                     }
-                  },
-                  "required": ["transId", "status", "message"]
+                  }
                 }
               }
             }
@@ -330,11 +345,6 @@
       "get": {
         "summary": "Get Transactions by User ID",
         "description": "Retrieve all transactions associated with a specific user ID.",
-        "security": [
-          {
-            "apiAuth": []
-          }
-        ],
         "parameters": [
           {
             "name": "userId",
@@ -378,11 +388,6 @@
       "get": {
         "summary": "Search Transactions",
         "description": "Search transactions by various filters.",
-        "security": [
-          {
-            "apiAuth": []
-          }
-        ],
         "parameters": [
           {
             "name": "status",
@@ -398,7 +403,7 @@
             "in": "query",
             "schema": {
               "type": "string",
-              "enum": ["mobile money", "orange money", "card"]
+              "enum": ["mobile money", "orange money"]
             },
             "description": "Filter by payment medium."
           },
@@ -481,11 +486,6 @@
       "get": {
         "summary": "Get Service Balance",
         "description": "Returns the current balance of the service account.",
-        "security": [
-          {
-            "apiAuth": []
-          }
-        ],
         "responses": {
           "200": {
             "description": "Current balance returned",
@@ -494,12 +494,19 @@
                 "schema": {
                   "type": "object",
                   "properties": {
+                    "service": {
+                      "type": "string",
+                      "description": "The service whose balance you've queried."
+                    },
                     "balance": {
                       "type": "integer",
                       "description": "Current balance amount."
+                    },
+                    "currency": {
+                      "type": "string",
+                      "description": "Currency."
                     }
-                  },
-                  "required": ["balance"]
+                  }
                 }
               }
             }
@@ -511,11 +518,6 @@
       "post": {
         "summary": "Make a Payout",
         "description": "Send money to a user’s mobile money account or bank via a payout-enabled service.",
-        "security": [
-          {
-            "apiAuth": []
-          }
-        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -526,7 +528,7 @@
                   "amount": {
                     "type": "integer",
                     "minimum": 100,
-                    "description": "Amount to send (minimum 100)."
+                    "description": "Amount to send (minimum 100 XAF)."
                   },
                   "phone": {
                     "type": "string",
@@ -568,24 +570,26 @@
         },
         "responses": {
           "200": {
-            "description": "Payout initiated successfully",
+            "description": "Accepted",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "transId": {
-                      "type": "string"
-                    },
-                    "status": {
-                      "type": "string",
-                      "description": "Current status of the payout."
-                    },
                     "message": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Success message"
+                    },
+                    "transId": {
+                      "type": "string",
+                      "description": "Transaction ID for the payment."
+                    },
+                    "dateInitiated": {
+                      "type": "string",
+                      "format": "date",
+                      "description": "Date when the payment was initiated."
                     }
-                  },
-                  "required": ["transId", "status"]
+                  }
                 }
               }
             }
@@ -608,20 +612,29 @@
     "/webhook/payment-status": {
       "post": {
         "description": "Notifies your application when the status of a payment changes (SUCCESSFUL, FAILED, EXPIRED).",
-        "requestBody": {
-          "description": "Payload containing payment transaction status and details.",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PaymentStatus"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
-            "description": "Acknowledgement of webhook receipt"
+            "description": "Acknowledgement of webhook receipt",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Transaction"
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Invalid query parameters or error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
           }
         }
       }
@@ -648,29 +661,79 @@
             "type": "string",
             "description": "Error message."
           }
-        },
-        "required": ["message"]
+        }
       },
       "Transaction": {
         "type": "object",
         "properties": {
           "transId": {
-            "type": "string"
-          },
-          "amount": {
-            "type": "integer"
+            "type": "string",
+            "description": "Transaction ID of the payment."
           },
           "status": {
-            "type": "string"
+            "type": "string",
+            "enum": ["CREATED", "PENDING", "SUCCESSFUL", "FAILED", "EXPIRED"],
+            "description": "Transaction status"
           },
           "medium": {
-            "type": "string"
+            "type": "string",
+            "enum": ["mobile money", "orange money"],
+            "description": "Payment method"
           },
-          "message": {
-            "type": "string"
+          "serviceName": {
+            "type": "string",
+            "description": "Name of the service in use"
+          },
+          "amount": {
+            "type": "integer",
+            "description": "Transaction amount"
+          },
+          "revenue": {
+            "type": "integer",
+            "description": "Amount received when Fapshi fees have been deducted"
+          },
+          "payerName": {
+            "type": "string",
+            "description": "Client name"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "Client email"
+          },
+          "redirectUrl": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to redirect after payment"
+          },
+          "externalId": {
+            "type": "string",
+            "description": "The transaction ID on your application"
+          },
+          "userId": {
+            "type": "string",
+            "description": "ID of the client on your application"
+          },
+          "webhook": {
+            "type": "string",
+            "format": "uri",
+            "description": "The webhook you defined for your service"
+          },
+          "financialTransId": {
+            "type": "string",
+            "description": "Transaction ID with the payment operator"
+          },
+          "dateInitiated": {
+            "type": "string",
+            "format": "date",
+            "description": "Date when the payment was initiated"
+          },
+          "dateConfirmed": {
+            "type": "string",
+            "format": "date",
+            "description": "Date when the payment was made"
           }
-        },
-        "required": ["transId", "amount", "status"]
+        }
       }
     }
   }

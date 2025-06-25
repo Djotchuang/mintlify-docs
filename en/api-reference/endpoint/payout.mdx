@@ -5,9 +5,9 @@ keywords: ["make payout", "send money", "fapshi payout", "bulk payments", "payme
 openapi: 'POST /payout'
 ---
 
-# Make a Payout
+## Endpoint
 
-**Endpoint:** `POST /payout`
+`POST /payout`
 
 Send money to a user’s mobile money account or bank via a payout service.
 
@@ -16,8 +16,8 @@ Send money to a user’s mobile money account or bank via a payout service.
 ## Parameters
 
 | Name       | Required | Type    | Description                                                                                           |
-|------------|----------|---------|---------------------------------------------------------------------------------------------------|
-| amount     | Yes      | integer | Amount to send (minimum 100).                                                                       |
+|:-----------|:---------|:--------|:---------------------------------------------------------------------------------------------------|
+| amount     | Yes      | integer | Amount to send (minimum 100 XAF).                                                                       |
 | phone      | Yes      | string  | Recipient phone number (e.g., 67XXXXXXX).                                                          |
 | medium     | No       | string  | `"mobile money"` or `"orange money"`. Auto-detected if omitted.                                   |
 | name       | No       | string  | Recipient’s name.                                                                                   |

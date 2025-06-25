@@ -5,20 +5,20 @@ keywords: ["payment status", "transaction status", "fapshi payment status", "che
 openapi: 'GET /payment-status/{transId}'
 ---
 
-# Get Payment Transaction Status
+## Endpoint
 
-**Endpoint:** `GET /payment-status/:transId`
+`GET /payment-status/:transId`
 
 Check the status of a payment by transaction ID.
 
 ## Status Values
 
 | Status     | Meaning                                                                           |
-|------------|-----------------------------------------------------------------------------------|
+|:-----------|:----------------------------------------------------------------------------------|
 | CREATED    | Payment not yet attempted.                                                        |
 | PENDING    | User is in process of payment.                                                   |
 | SUCCESSFUL | Payment completed successfully.                                                  |
 | FAILED     | Payment failed.                                                                  |
-| EXPIRED    | Payment link expired or manually expired.                                       |
+| EXPIRED    | This means 24 hours have passed since the payment link was generated and no successful payment attempt was made in that time interval OR the link got [manually expired](/en/api-reference/endpoint/expire-pay) to prevent payment.                                      |
 
-> **Note:** No payments can be made after a status is SUCCESSFUL or EXPIRED.
+<Note>No payments can be made after the status is SUCCESSFUL or EXPIRED.</Note>

@@ -14,4 +14,6 @@ You can set a webhook URL per service on your Fapshi dashboard. When set, a **PO
 
 The body of the webhook request will be the same as the response body returned when querying a payment status (`/payment-status/:transId`).
 
-**Note:** Your server should respond quickly to webhook requests to avoid timeouts. Fapshi sends only one webhook request per event, regardless of whether your server responds or not.
+<Note> 
+Your server should respond quickly to webhook requests to avoid timeouts. Fapshi sends only one webhook request per event, regardless of whether your server responds or not.
+</Note>
