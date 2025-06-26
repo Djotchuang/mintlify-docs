@@ -1,10 +1,11 @@
 ---
 title: 'Intégration Webhook'
+description: 'Découvrez comment intégrer des webhooks pour recevoir en temps réel les mises à jour du statut des paiements depuis Fapshi.'
 openapi: '/fr/api-reference/openapi.json WEBHOOK /webhook/payment-status'
 keywords: ['webhook', 'notification de paiement', 'webhook fapshi', 'événement de paiement', 'statut de transaction']
 ---
 
-Un webhook est un **endpoint API** mis à disposition des applications externes, qui peut être appelé pour notifier votre application lorsqu’un événement important se produit. Cela permet à votre application de réagir immédiatement à ces événements.
+Un webhook est un **point de terminaison API** mis à disposition des applications externes, qui peut être appelé pour notifier votre application lorsqu’un événement important se produit. Cela permet à votre application de réagir immédiatement à ces événements.
 
 Vous pouvez définir une URL de webhook **par service** dans votre tableau de bord Fapshi. Lorsqu’un webhook est défini, une requête **POST** sera envoyée à cette URL chaque fois que le statut d’un paiement change en :
 
@@ -12,7 +13,7 @@ Vous pouvez définir une URL de webhook **par service** dans votre tableau de bo
 - **FAILED** — lorsqu’une tentative de paiement échoue (généralement sur les réseaux MTN Mobile Money ou Orange Money)
 - **EXPIRED** — lorsqu’un lien de paiement expire après 24 heures sans paiement réussi
 
-Le corps de la requête webhook est identique au corps de la réponse retournée par la requête de statut de paiement (`/payment-status/:transId`).
+Le corps de la requête webhook est identique au corps de la réponse retournée par la [requête de statut de paiement](/fr/api-reference/endpoint/payment-status).
 
 <Note>
 Votre serveur doit répondre rapidement aux requêtes webhook pour éviter les erreurs de timeout. Fapshi n’envoie qu’une seule requête webhook par événement, **même si votre serveur ne répond pas**.

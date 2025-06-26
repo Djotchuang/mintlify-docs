@@ -1,5 +1,6 @@
 ---
 title: 'Webhook Integration'
+description: 'Learn how to integrate webhooks to receive real-time payment status updates from Fapshi.'
 openapi: '/en/api-reference/openapi.json WEBHOOK /webhook/payment-status'
 keywords: ['webhook', 'payment notification', 'fapshi webhook', 'payment event', 'transaction status']
 ---
@@ -12,7 +13,7 @@ You can set a webhook URL per service on your Fapshi dashboard. When set, a **PO
 - **FAILED** — when a payment attempt fails (usually on operator networks like MTN Mobile Money or Orange Money)
 - **EXPIRED** — when a payment link expires after 24 hours without successful payment
 
-The body of the webhook request will be the same as the response body returned when querying a payment status (`/payment-status/:transId`).
+The body of the webhook request will be the same as the response body returned when [querying a payment status](/en/api-reference/endpoint/payment-status).
 
 <Note> 
 Your server should respond quickly to webhook requests to avoid timeouts. Fapshi sends only one webhook request per event, regardless of whether your server responds or not.
