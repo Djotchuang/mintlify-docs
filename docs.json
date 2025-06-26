@@ -27,6 +27,7 @@
       "robots": "index, follow",
       "googlebot": "index, follow",
       "google": "notranslate",
+      "google-site-verification": "google957cfce7a3bceb0b.html",
       "generator": "Mintlify",
       "theme-color": "#3f5cfd",
       "color-scheme": "light dark",
