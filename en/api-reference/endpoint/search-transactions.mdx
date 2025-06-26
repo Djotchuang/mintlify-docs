@@ -2,7 +2,7 @@
 title: "Search Transactions"
 description: "Search for transactions using various filter criteria."
 keywords: ["search transactions", "filter payments", "transaction query", "fapshi search", "payment API"]
-openapi: 'GET /search'
+openapi: '/en/api-reference/openapi.json GET /search'
 ---
 
 ## Endpoint
@@ -16,7 +16,7 @@ Search for transactions based on criteria.
 | Name   | Description                                                          | Allowed Values                              |
 |:-------|:---------------------------------------------------------------------|:--------------------------------------------|
 | status | Filter transactions by status.                                       | `created`, `successful`, `failed`, `expired` |
-| medium | Filter by payment medium.                                            | `mobile money`, `orange money`, `card`     |
+| medium | Filter by payment medium.                                            | `mobile money`, `orange money`    |
 | start  | Start date (YYYY-MM-DD) for filtering initiated transactions.         | Date format                                |
 | end    | End date (YYYY-MM-DD) for filtering initiated transactions.           | Date format                                |
 | amt    | Exact amount to filter by.                                           | Integer                                    |
