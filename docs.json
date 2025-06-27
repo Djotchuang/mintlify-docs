@@ -17,15 +17,6 @@
       "languages": ["curl", "javascript", "php", "python", "java", "go"]
     }
   },
-  "head": [
-    {
-      "tag": "meta",
-      "attributes": {
-        "name": "google-site-verification",
-        "content": "wyX0OphWlYDllFqj8UMDlFbbkdnm3Xnizg6uwfg4j4Y"
-      }
-    }
-  ],
   "seo": {
     "metatags": {
       "charset": "UTF-8",
@@ -36,6 +27,7 @@
       "robots": "index, follow",
       "googlebot": "index, follow",
       "google": "notranslate",
+      "google-site-verification": "wyX0OphWlYDllFqj8UMDlFbbkdnm3Xnizg6uwfg4j4Y",
       "generator": "Mintlify",
       "theme-color": "#3f5cfd",
       "color-scheme": "light dark",
@@ -45,7 +37,8 @@
       "language": "en",
       "copyright": "Copyright 2025 Fapshi Inc.",
       "distribution": "global",
-      "category": "Financial Technology (FinTech)",
+      "coverage": "Worldwide",
+      "category": "Technology",
       "HandheldFriendly": "True",
       "MobileOptimized": "320",
       "apple-mobile-web-app-capable": "yes",
