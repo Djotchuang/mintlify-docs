@@ -17,6 +17,15 @@
       "languages": ["curl", "javascript", "php", "python", "java", "go"]
     }
   },
+  "head": [
+    {
+      "tag": "meta",
+      "attributes": {
+        "name": "google-site-verification",
+        "content": "wyX0OphWlYDllFqj8UMDlFbbkdnm3Xnizg6uwfg4j4Y"
+      }
+    }
+  ],
   "seo": {
     "metatags": {
       "charset": "UTF-8",
