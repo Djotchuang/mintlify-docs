@@ -30,7 +30,7 @@
     "metatags": {
       "charset": "UTF-8",
       "viewport": "width=device-width, initial-scale=1.0",
-      "description": "Fapshi Documentation: Comprehensive guides and API references for integrating mobile money and bank payouts. Learn to create payment links, manage transactions, and more.",
+      "description": "Fapshi Documentation: Comprehensive guides and API references for payments collection and disbursement. Learn to create payment links, manage transactions, and more.",
       "keywords": "Fapshi API, payment integration, mobile money API, payment links, transaction management, API documentation, developer tools, no-code payments, event ticketing, invoicing",
       "author": "Fapshi Team",
       "robots": "index, follow",
@@ -58,7 +58,7 @@
       "og:type": "website",
       "og:url": "https://docs.fapshi.com",
       "og:image": "/og-image.jpg",
-      "og:description": "Discover Fapshi’s API for mobile money, payment links, and transaction management. Get started with our guides and API references.",
+      "og:description": "Discover Fapshi’s API for online payments collection, disbursement, and transaction management. Get started with our guides and API references.",
       "og:site_name": "Fapshi Documentation",
       "og:locale": "en_US",
       "og:locale:alternate": "fr_FR",
@@ -66,7 +66,7 @@
       "twitter:site": "@fapshi",
       "twitter:creator": "@fapshi",
       "twitter:title": "Fapshi API Documentation",
-      "twitter:description": "Integrate payments with Fapshi’s API. Explore guides for payment links, transaction monitoring, and payouts.",
+      "twitter:description": "Discover Fapshi’s API for online payments collection, disbursement, and transaction management. Get started with our guides and API references.",
       "twitter:image": "/og-image.jpg",
       "twitter:image:alt": "Fapshi Documentation Preview"
     }
