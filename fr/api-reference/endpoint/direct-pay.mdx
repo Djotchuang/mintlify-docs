@@ -11,6 +11,11 @@ openapi: '/fr/api-reference/openapi.json POST /direct-pay'
 
 Envoyez une demande de paiement directement sur le mobile d’un utilisateur. Vous êtes responsable de la création de votre propre formulaire de paiement et de la vérification du statut du paiement.
 
+<Note>Les transactions de paiement direct ne peuvent et ne s'expirent pas, sauf si vous les expirez manuellement en utilisant l'endpoint [expire-transaction](/fr/api-reference/endpoint/expire-transaction). Par conséquent, leur état final est soit **SUCCESSFUL** soit **FAILED**.</Note>
+
+<Warning> Le paiement direct est désactivé par défaut en environnement live ; [contactez le support](https://wa.me/237658610472) pour activation.</Warning>
+<Danger>Manipulez cet endpoint avec précaution ; toute mauvaise utilisation peut entraîner la suspension de votre compte.</Danger>
+
 ## Paramètres
 
 | Nom        | Obligatoire | Type    | Description                                                                                |
@@ -33,7 +38,4 @@ Envoyez une demande de paiement directement sur le mobile d’un utilisateur. Vo
 
 - En cas d’erreur, un code 4XX avec un message d’échec est retourné.
 
-<Note>Les transactions de paiement direct ne peuvent et ne s'expirent pas, sauf si vous les expirez manuellement en utilisant l'endpoint [expire-transaction](/fr/api-reference/endpoint/expire-transaction). Par conséquent, leur état final est soit **SUCCESSFUL** soit **FAILED**.</Note>
 
-<Warning> Le paiement direct est désactivé par défaut en environnement live ; [contactez le support](https://wa.me/237658610472) pour activation.</Warning>
-<Danger>Manipulez cet endpoint avec précaution ; toute mauvaise utilisation peut entraîner la suspension de votre compte.</Danger>
