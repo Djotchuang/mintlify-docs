@@ -1,29 +1,35 @@
 ---
-title: 'Créer un Service'
-description: 'Découvrez comment créer un service sur le tableau de bord Fapshi pour commencer à collecter ou envoyer des paiements via l’API.'
-keywords: [
-  "fapshi créer un service",
-  "configuration service API",
-  "service de collecte",
-  "service de retrait",
-  "tableau de bord fapshi service",
-  "configuration api de paiement"
-]
+title: "Créer un Service"
+description: "Découvrez comment créer un service sur le tableau de bord Fapshi pour commencer à collecter ou envoyer des paiements via l’API."
+keywords:
+  [
+    "fapshi créer un service",
+    "configuration service API",
+    "service de collecte",
+    "service de retrait",
+    "tableau de bord fapshi service",
+    "configuration api de paiement",
+  ]
 ---
 
 ---
 
-Pour utiliser nos endpoints API, vous devez créer un **service**. Un service représente la plateforme ou l’application que vous souhaitez utiliser pour **collecter** ou **effectuer des paiements**. Il existe deux types de services :
+Pour utiliser nos endpoints API, vous devez [créer un **service**](https://www.fapshi.com/fr/aide-et-support/how-to-create-a-service-to-get-api-credentials). Un service représente la plateforme ou l’application que vous souhaitez utiliser pour **collecter** ou **effectuer des paiements**. Il existe deux types de services :
 
 1. **Service de Collecte** : Utilisé pour collecter de l’argent sur votre plateforme. Tous les fonds seront visibles dans ce service sur votre tableau de bord.
 2. **Service de Déboursement** : Utilisé pour effectuer des paiements programmés à partir de votre plateforme.
 
 <Note>
-Vous ne pouvez pas utiliser un même service à la fois pour la collecte et le déboursement. Si vous avez besoin des deux fonctionnalités, vous devez créer deux services distincts.
+  Vous ne pouvez pas utiliser un même service à la fois pour la collecte et le
+  déboursement. Si vous avez besoin des deux fonctionnalités, vous devez créer
+  deux services distincts.
 </Note>
 
 <Warning>
-Par défaut, les **retraits** sont désactivés en **mode Live**. Vous devez donc [contacter le support](https://wa.me/237658610472) avec votre **API User** pour demander l’activation. Cette demande ne doit être faite qu’après avoir testé la fonctionnalité avec les clés de test.
+  Par défaut, les **retraits** sont désactivés en **mode Live**. Vous devez donc
+  [contacter le support](https://wa.me/237658610472) avec votre **API User**
+  pour demander l’activation. Cette demande ne doit être faite qu’après avoir
+  testé la fonctionnalité avec les clés de test.
 </Warning>
 
 ## Comment Créer un Service
@@ -35,12 +41,17 @@ Par défaut, les **retraits** sont désactivés en **mode Live**. Vous devez don
 3. Remplissez les informations demandées et validez.
 
 <Info>
-- Le nom du service est le nom de votre site web ou application.
-- Le nom de domaine peut être celui que vous avez déjà acheté ou que vous prévoyez d’acheter. Vous n’êtes pas obligé de le posséder immédiatement. Notez que vous ne pouvez pas utiliser **fapshi.com** ou **iventily.com** comme nom de domaine, car ce sont des domaines appartenant à Fapshi.
+  - Le nom du service est le nom de votre site web ou application. - Le nom de
+  domaine peut être celui que vous avez déjà acheté ou que vous prévoyez
+  d’acheter. Vous n’êtes pas obligé de le posséder immédiatement. Notez que vous
+  ne pouvez pas utiliser **fapshi.com** ou **iventily.com** comme nom de
+  domaine, car ce sont des domaines appartenant à Fapshi.
 </Info>
 
 4. Vos identifiants **apikey** et **apiuser** seront générés et affichés en bas de la page du tableau de bord. Copiez-les et conservez-les précieusement.
 
 <Warning>
-Assurez-vous de garder vos clés API privées. Ne les sauvegardez jamais dans votre code ou sur Github. Utilisez plutôt des fichiers d’environnement, et pour plus de sécurité, pensez à faire une rotation régulière de vos clés API.
+  Assurez-vous de garder vos clés API privées. Ne les sauvegardez jamais dans
+  votre code ou sur Github. Utilisez plutôt des fichiers d’environnement, et
+  pour plus de sécurité, pensez à faire une rotation régulière de vos clés API.
 </Warning>

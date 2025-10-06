@@ -1,7 +1,14 @@
 ---
-title: 'Getting Started with the API'
-description: 'Learn how to set up and use the Fapshi API, from creating API keys to making authenticated requests and understanding the API’s structure and capabilities.'
-keywords: ['fapshi api', 'api setup', 'api payments', 'payment integration', 'developer api']
+title: "Getting Started with the API"
+description: "Learn how to set up and use the Fapshi API, from creating API keys to making authenticated requests and understanding the API’s structure and capabilities."
+keywords:
+  [
+    "fapshi api",
+    "api setup",
+    "api payments",
+    "payment integration",
+    "developer api",
+  ]
 ---
 
 ---
@@ -19,7 +26,10 @@ Before diving in, make sure the following are in place:
 - You’ve [created a service](/en/api-reference/create-a-service) from your dashboard (this will provide your [API Key and API User](/en/api-reference/preliminary-knowledge/api-credentials))
 
 <Note>
-If you're new to the API, we recommend reviewing the [Preliminary Knowledge](/en/api-reference/preliminary-knowledge) section first. It contains essential information about authentication, request structure, response formats, and general rules for interacting with the API.
+  If you're new to the API, we recommend reviewing the [Preliminary
+  Knowledge](/en/api-reference/preliminary-knowledge) section first. It contains
+  essential information about authentication, request structure, response
+  formats, and general rules for interacting with the API.
 </Note>
 
 ## What You Can Do with the API
@@ -31,8 +41,13 @@ The Fapshi API supports two primary operations:
 You can collect payments using either:
 
 - [`Initiate Pay`](/en/api-reference/endpoint/initiate-pay): Provides a prebuilt checkout page where your customers complete payments through a Fapshi-hosted interface. Great for rapid setup.
-  
 - [`Direct Pay`](/en/api-reference/endpoint/direct-pay): Offers full control. You’ll build your own payment form and handle validations and user experience on your end, while using our backend to process the transaction.
+
+<Info>
+  Read the [Direct pay Vs Initiate Pay
+  article](https://www.fapshi.com/en/help-and-support/direct-pay-vs-initiate-pay-all-you-need-to-know)
+  to understand the difference between the two and know which one to choose.
+</Info>
 
 ### 2. **Disburse Funds**
 

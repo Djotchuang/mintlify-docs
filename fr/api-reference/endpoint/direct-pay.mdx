@@ -1,8 +1,15 @@
 ---
 title: "Initier une demande de paiement direct"
 description: "Envoyez une demande de paiement directement sur le mobile d'un utilisateur."
-keywords: ["paiement direct", "fapshi direct pay", "demande paiement mobile", "api paiement", "endpoint direct-pay"]
-openapi: '/fr/api-reference/openapi.json POST /direct-pay'
+keywords:
+  [
+    "paiement direct",
+    "fapshi direct pay",
+    "demande paiement mobile",
+    "api paiement",
+    "endpoint direct-pay",
+  ]
+openapi: "/fr/api-reference/openapi.json POST /direct-pay"
 ---
 
 ## Endpoint
@@ -11,31 +18,43 @@ openapi: '/fr/api-reference/openapi.json POST /direct-pay'
 
 Envoyez une demande de paiement directement sur le mobile d’un utilisateur. Vous êtes responsable de la création de votre propre formulaire de paiement et de la vérification du statut du paiement.
 
-<Note>Les transactions de paiement direct ne peuvent et ne s'expirent pas, sauf si vous les expirez manuellement en utilisant l'endpoint [expire-transaction](/fr/api-reference/endpoint/expire-transaction). Par conséquent, leur état final est soit **SUCCESSFUL** soit **FAILED**.</Note>
+<Note>
+  Les transactions de paiement direct ne peuvent et ne s'expirent pas, sauf si
+  vous les expirez manuellement en utilisant l'endpoint
+  [expire-transaction](/fr/api-reference/endpoint/expire-transaction). Par
+  conséquent, leur état final est soit **SUCCESSFUL** soit **FAILED**.
+</Note>
 
-<Warning> Le paiement direct est désactivé par défaut en environnement live ; [contactez le support](https://wa.me/237658610472) pour activation.</Warning>
-<Danger>Manipulez cet endpoint avec précaution ; toute mauvaise utilisation peut entraîner la suspension de votre compte.</Danger>
+<Warning>
+  {" "}
+  Le paiement direct est désactivé par défaut dans l’environnement Live. Suivez les
+  étapes du guide [Activer le paiement direct sur votre API Fapshi en mode Live](https://www.fapshi.com/fr/aide-et-support/how-to-activate-direct-pay-for-your-fapshi-api)
+  pour activer le paiement direct en mode live.
+</Warning>
+<Danger>
+  Manipulez ce point de terminaison avec précaution ; toute mauvaise utilisation
+  peut entraîner la suspension de votre compte.
+</Danger>
 
 ## Paramètres
 
-| Nom        | Obligatoire | Type    | Description                                                                                |
-|:-----------|:------------|:--------|:-------------------------------------------------------------------------------------------|
-| amount     | Oui         | entier  | Montant à payer (minimum 100 XAF).                                                        |
-| phone      | Oui         | chaîne  | Numéro de téléphone pour la demande de paiement (exemple : 67XXXXXXX).                    |
-| medium     | Non         | chaîne  | `"mobile money"` ou `"orange money"`. À omettre pour détection automatique.                |
-| name       | Non         | chaîne  | Nom du payeur.                                                                            |
-| email      | Non         | chaîne  | Email du payeur pour recevoir le reçu.                                                    |
-| userId     | Non         | chaîne  | ID utilisateur dans votre système (1–100 caractères; a–z, A–Z, 0–9, -, _ autorisés).     |
-| externalId | Non         | chaîne  | ID de transaction ou commande pour rapprochement (1–100 caractères; mêmes règles).        |
-| message    | Non         | chaîne  | Motif du paiement.                                                                        |
+| Nom        | Obligatoire | Type   | Description                                                                           |
+| :--------- | :---------- | :----- | :------------------------------------------------------------------------------------ |
+| amount     | Oui         | entier | Montant à payer (minimum 100 XAF).                                                    |
+| phone      | Oui         | chaîne | Numéro de téléphone pour la demande de paiement (exemple : 67XXXXXXX).                |
+| medium     | Non         | chaîne | `"mobile money"` ou `"orange money"`. À omettre pour détection automatique.           |
+| name       | Non         | chaîne | Nom du payeur.                                                                        |
+| email      | Non         | chaîne | Email du payeur pour recevoir le reçu.                                                |
+| userId     | Non         | chaîne | ID utilisateur dans votre système (1–100 caractères; a–z, A–Z, 0–9, -, \_ autorisés). |
+| externalId | Non         | chaîne | ID de transaction ou commande pour rapprochement (1–100 caractères; mêmes règles).    |
+| message    | Non         | chaîne | Motif du paiement.                                                                    |
 
 ## Réponse
 
-- `200 OK` avec un corps JSON contenant :  
-  - `message` : message de succès  
-  - `transId` : ID de la transaction pour suivre le paiement  
+- `200 OK` avec un corps JSON contenant :
+
+  - `message` : message de succès
+  - `transId` : ID de la transaction pour suivre le paiement
   - `dateInitiated` : date de l’initiation du paiement
 
 - En cas d’erreur, un code 4XX avec un message d’échec est retourné.
-
-
