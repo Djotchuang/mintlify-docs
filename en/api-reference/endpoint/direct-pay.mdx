@@ -19,10 +19,7 @@ openapi: "/en/api-reference/openapi.json POST /direct-pay"
 Send a payment request directly to a user's mobile device. You are responsible for building your own checkout and verifying payment status.
 
 <Note>
-  Direct payment transactions cannot and do not expire, unless you manually
-  expire them using the
-  [expire-transaction](/en/api-reference/endpoint/expire-transaction) endpoint.
-  Consequently, their final state is either **SUCCESSFUL** or **FAILED**.
+  Direct payment transactions cannot and do not expire. Consequently, their final state is either **SUCCESSFUL** or **FAILED**.
 </Note>
 
 <Warning>

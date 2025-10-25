@@ -19,9 +19,7 @@ openapi: "/fr/api-reference/openapi.json POST /direct-pay"
 Envoyez une demande de paiement directement sur le mobile d’un utilisateur. Vous êtes responsable de la création de votre propre formulaire de paiement et de la vérification du statut du paiement.
 
 <Note>
-  Les transactions de paiement direct ne peuvent et ne s'expirent pas, sauf si
-  vous les expirez manuellement en utilisant l'endpoint
-  [expire-transaction](/fr/api-reference/endpoint/expire-transaction). Par
+  Les transactions de paiement direct ne peuvent et ne s'expirent pas. Par
   conséquent, leur état final est soit **SUCCESSFUL** soit **FAILED**.
 </Note>
 
