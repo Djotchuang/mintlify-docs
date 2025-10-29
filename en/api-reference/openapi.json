@@ -532,7 +532,7 @@
     "/payout": {
       "post": {
         "summary": "Make a Payout",
-        "description": "Send money to a user’s mobile money account or bank via a payout-enabled service.",
+        "description": "Send money to a user's mobile money, orange money or fapshi account via a payout-enabled service. When `medium` is not specified, `amount` and `phone` are required. When `medium` is set to `\"fapshi\"`, `amount` and `email` are required.",
         "requestBody": {
           "required": true,
           "content": {
@@ -547,12 +547,12 @@
                   },
                   "phone": {
                     "type": "string",
-                    "description": "Recipient phone number."
+                    "description": "Recipient phone number. Required when `medium` is not specified or not `\"fapshi\"`. Not required when `medium` is `\"fapshi\"`."
                   },
                   "medium": {
                     "type": "string",
-                    "enum": ["mobile money", "orange money"],
-                    "description": "Payment medium (optional)."
+                    "enum": ["mobile money", "orange money", "fapshi"],
+                    "description": "Payment medium (optional). Auto-detected if omitted (requires `phone`). When set to `\"fapshi\"`, `email` is required instead of `phone`."
                   },
                   "name": {
                     "type": "string",
@@ -561,7 +561,7 @@
                   "email": {
                     "type": "string",
                     "format": "email",
-                    "description": "Recipient email for payout receipt (optional)."
+                    "description": "Recipient email. Required when `medium` is `\"fapshi\"`. Optional for payout receipt when `medium` is not `\"fapshi\"`."
                   },
                   "userId": {
                     "type": "string",
@@ -578,7 +578,7 @@
                     "description": "Reason for payout (optional)."
                   }
                 },
-                "required": ["amount", "phone"]
+                "required": ["amount"]
               }
             }
           }

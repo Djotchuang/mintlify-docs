@@ -532,7 +532,7 @@
     "/payout": {
       "post": {
         "summary": "Effectuer un Paiement Sortant",
-        "description": "Envoyer de l'argent sur le compte mobile money ou bancaire d'un utilisateur via un service activé pour les retraits.",
+        "description": "Envoyer de l'argent sur le compte mobile money, orange money ou fapshi d'un utilisateur via un service activé pour les retraits. Lorsque `medium` n'est pas spécifié, `amount` et `phone` sont requis. Lorsque `medium` est défini sur `\"fapshi\"`, `amount` et `email` sont requis.",
         "requestBody": {
           "required": true,
           "content": {
@@ -547,12 +547,12 @@
                   },
                   "phone": {
                     "type": "string",
-                    "description": "Numéro de téléphone du destinataire."
+                    "description": "Numéro de téléphone du destinataire. Requis lorsque `medium` n'est pas spécifié ou n'est pas `\"fapshi\"`. Non requis lorsque `medium` est `\"fapshi\"`."
                   },
                   "medium": {
                     "type": "string",
-                    "enum": ["mobile money", "orange money"],
-                    "description": "Moyen de paiement (facultatif)."
+                    "enum": ["mobile money", "orange money", "fapshi"],
+                    "description": "Moyen de paiement (facultatif). Détecté automatiquement si omis (nécessite `phone`). Lorsqu'il est défini sur `\"fapshi\"`, `email` est requis à la place de `phone`."
                   },
                   "name": {
                     "type": "string",
@@ -561,7 +561,7 @@
                   "email": {
                     "type": "string",
                     "format": "email",
-                    "description": "Email du destinataire pour le reçu de paiement (facultatif)."
+                    "description": "Email du destinataire. Requis lorsque `medium` est `\"fapshi\"`. Facultatif pour le reçu de paiement lorsque `medium` n'est pas `\"fapshi\"`."
                   },
                   "userId": {
                     "type": "string",
@@ -578,7 +578,7 @@
                     "description": "Motif du paiement (facultatif)."
                   }
                 },
-                "required": ["amount", "phone"]
+                "required": ["amount"]
               }
             }
           }
