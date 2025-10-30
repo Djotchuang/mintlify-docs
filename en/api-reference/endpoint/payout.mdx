@@ -18,10 +18,23 @@ Send money to a user’s mobile money account or bank via a payout service.
 | Name       | Required | Type    | Description                                                                                           |
 |:-----------|:---------|:--------|:---------------------------------------------------------------------------------------------------|
 | amount     | Yes      | integer | Amount to send (minimum 100 XAF).                                                                       |
-| phone      | Yes      | string  | Recipient phone number (e.g., 67XXXXXXX).                                                          |
-| medium     | No       | string  | `"mobile money"` or `"orange money"`. Auto-detected if omitted.                                   |
-| name       | No       | string  | Recipient’s name.                                                                                   |
-| email      | No       | string  | Recipient’s email for payout confirmation receipt.                                                |
-| userId     | No       | string  | Your system’s user ID for payout tracking (1-100 chars; allowed: a-z, A-Z, 0-9, -, _).            |
+| phone      | Conditional | string  | Recipient phone number (e.g., 67XXXXXXX). Required when `medium` is not specified or not `"fapshi"`.                                                          |
+| medium     | No       | string  | `"mobile money"`, `"orange money"`, or `"fapshi"`. Auto-detected if omitted (requires `phone`). When set to `"fapshi"`, `email` is required instead of `phone`.                                   |
+| name       | No       | string  | Recipient's name.                                                                                   |
+| email      | Conditional | string  | Recipient's email. Required when `medium` is `"fapshi"`. Optional for payout confirmation receipt when `medium` is not `"fapshi"`.                                                |
+| userId     | No       | string  | Your system's user ID for payout tracking (1-100 chars; allowed: a-z, A-Z, 0-9, -, _).            |
 | externalId | No       | string  | Transaction/order ID for reconciliation (1-100 chars; allowed: a-z, A-Z, 0-9, -, _).              |
 | message    | No       | string  | Description or reason for payout.                                                                  |
+
+### Required Fields
+
+- **When `medium` is not specified**: `amount` and `phone` are required.
+- **When `medium` is `"fapshi"`**: `amount` and `email` are required.
+
+### Sandbox Testing
+
+When testing payouts with `medium` set to `"fapshi"` in the sandbox environment:
+
+- **Emails that always return successful transactions**: `test.success@fapshi.com` and `messi.champion@fapshi.com`
+- **Emails that always return failed transactions**: `test.failed@fapshi.com` and `penaldo.test@fapshi.com`
+- **Other emails**: Transaction status will be determined in a stochastic (random) manner

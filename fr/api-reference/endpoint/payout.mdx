@@ -18,10 +18,23 @@ Envoyez de l’argent sur le compte mobile money ou bancaire d’un utilisateur 
 | Nom        | Requis   | Type    | Description                                                                                       |
 |:-----------|:---------|:--------|:------------------------------------------------------------------------------------------------|
 | amount     | Oui      | entier  | Montant à envoyer (minimum 100 XAF).                                                            |
-| phone      | Oui      | chaîne  | Numéro de téléphone du bénéficiaire (ex. : 67XXXXXXX).                                          |
-| medium     | Non      | chaîne  | `"mobile money"` ou `"orange money"`. Détecté automatiquement si omis.                          |
+| phone      | Conditionnel | chaîne  | Numéro de téléphone du bénéficiaire (ex. : 67XXXXXXX). Requis lorsque `medium` n'est pas spécifié ou n'est pas `"fapshi"`.                                          |
+| medium     | Non      | chaîne  | `"mobile money"`, `"orange money"`, ou `"fapshi"`. Détecté automatiquement si omis (nécessite `phone`). Lorsqu'il est défini sur `"fapshi"`, `email` est requis à la place de `phone`.                          |
 | name       | Non      | chaîne  | Nom du bénéficiaire.                                                                             |
-| email      | Non      | chaîne  | Email du bénéficiaire pour recevoir le reçu de confirmation du retrait.                         |
+| email      | Conditionnel | chaîne  | Email du bénéficiaire. Requis lorsque `medium` est `"fapshi"`. Facultatif pour recevoir le reçu de confirmation du retrait lorsque `medium` n'est pas `"fapshi"`.                         |
 | userId     | Non      | chaîne  | ID utilisateur de votre système pour le suivi des retraits (1-100 caractères; autorisés : a-z, A-Z, 0-9, -, _). |
 | externalId | Non      | chaîne  | ID de transaction/commande pour la réconciliation (1-100 caractères; autorisés : a-z, A-Z, 0-9, -, _).   |
 | message    | Non      | chaîne  | Description ou motif du retrait.                                                                |
+
+### Champs Requis
+
+- **Lorsque `medium` n'est pas spécifié** : `amount` et `phone` sont requis.
+- **Lorsque `medium` est `"fapshi"`** : `amount` et `email` sont requis.
+
+### Tests en Environnement Sandbox
+
+Lors des tests de retraits avec `medium` défini sur `"fapshi"` dans l'environnement sandbox :
+
+- **Emails qui retournent toujours des transactions réussies** : `test.success@fapshi.com` et `messi.champion@fapshi.com`
+- **Emails qui retournent toujours des transactions échouées** : `test.failed@fapshi.com` et `penaldo.test@fapshi.com`
+- **Autres emails** : Le statut de la transaction sera déterminé de manière stochastique (aléatoire)
