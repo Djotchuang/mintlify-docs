@@ -11,6 +11,8 @@ openapi: '/en/api-reference/openapi.json POST /expire-pay'
 
 Expire a payment link to prevent further payments.
 
+<Note>Only transactions that were created with the [initiate-pay](/en/api-reference/endpoint/initiate-pay) endpoint can be expired.</Note>
+
 ## Parameters
 
 | Name    | Required | Type   | Description                    |

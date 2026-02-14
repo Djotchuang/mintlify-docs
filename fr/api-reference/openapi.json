@@ -221,10 +221,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Transaction"
-                  }
+                  "$ref": "#/components/schemas/Transaction"
                 }
               }
             }
@@ -245,7 +242,7 @@
     "/expire-pay": {
       "post": {
         "summary": "Expirer une Transaction de Paiement",
-        "description": "Invalider un lien de paiement pour empêcher d'autres paiements.",
+        "description": "Invalider un lien de paiement pour empêcher d'autres paiements. Seules les transactions créées avec l'endpoint [initiate-pay](/fr/api-reference/endpoint/initiate-pay) peuvent être expirées.",
         "requestBody": {
           "required": true,
           "content": {
@@ -627,26 +624,14 @@
     "/webhook/payment-status": {
       "post": {
         "description": "Notifie votre application lorsque le statut d'un paiement change (RÉUSSI, ÉCHOUÉ, EXPIRÉ).",
+        "security": [],
         "responses": {
           "200": {
             "description": "Accusé de réception du webhook",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Transaction"
-                  }
-                }
-              }
-            }
-          },
-          "4XX": {
-            "description": "Paramètres de requête invalides ou erreur",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
+                  "$ref": "#/components/schemas/Transaction"
                 }
               }
             }
@@ -699,6 +684,11 @@
             "type": "string",
             "description": "Nom du service utilisé"
           },
+          "transType": {
+            "type": "string",
+            "enum": ["Collection", "Payout"],
+            "description": "Type de transaction"
+          },
           "amount": {
             "type": "integer",
             "description": "Montant de la transaction"
@@ -733,6 +723,10 @@
             "type": "string",
             "format": "uri",
             "description": "Le webhook que vous avez défini pour votre service"
+          },
+          "reason": {
+            "type": "string",
+            "description": "Apparaît généralement lorsqu'un retrait via fapshi échoue."
           },
           "financialTransId": {
             "type": "string",

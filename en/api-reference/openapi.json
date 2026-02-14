@@ -221,10 +221,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Transaction"
-                  }
+                  "$ref": "#/components/schemas/Transaction"
                 }
               }
             }
@@ -269,76 +266,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "transId": {
-                      "type": "string",
-                      "description": "Transaction ID of the payment."
-                    },
-                    "status": {
-                      "type": "string",
-                      "enum": ["EXPIRED"],
-                      "description": "Transaction status"
-                    },
-                    "medium": {
-                      "type": "string",
-                      "enum": ["mobile money", "orange money"],
-                      "description": "Payment method"
-                    },
-                    "serviceName": {
-                      "type": "string",
-                      "description": "Name of the service in use"
-                    },
-                    "amount": {
-                      "type": "integer",
-                      "description": "Transaction amount"
-                    },
-                    "revenue": {
-                      "type": "integer",
-                      "description": "Amount received when Fapshi fees have been deducted"
-                    },
-                    "payerName": {
-                      "type": "string",
-                      "description": "Client name"
-                    },
-                    "email": {
-                      "type": "string",
-                      "format": "email",
-                      "description": "Client email"
-                    },
-                    "redirectUrl": {
-                      "type": "string",
-                      "format": "uri",
-                      "description": "URL to redirect after payment"
-                    },
-                    "externalId": {
-                      "type": "string",
-                      "description": "The transaction ID on your application"
-                    },
-                    "userId": {
-                      "type": "string",
-                      "description": "ID of the client on your application"
-                    },
-                    "webhook": {
-                      "type": "string",
-                      "format": "uri",
-                      "description": "The webhook you defined for your service"
-                    },
-                    "financialTransId": {
-                      "type": "string",
-                      "description": "Transaction ID with the payment operator"
-                    },
-                    "dateInitiated": {
-                      "type": "string",
-                      "format": "date",
-                      "description": "Date when the payment was initiated"
-                    },
-                    "dateConfirmed": {
-                      "type": "string",
-                      "format": "date",
-                      "description": "Date when the payment was made"
-                    }
-                  }
+                  "$ref": "#/components/schemas/Transaction"
                 }
               }
             }
@@ -627,26 +555,14 @@
     "/webhook/payment-status": {
       "post": {
         "description": "Notifies your application when the status of a payment changes (SUCCESSFUL, FAILED, EXPIRED).",
+        "security": [],
         "responses": {
           "200": {
             "description": "Acknowledgement of webhook receipt",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Transaction"
-                  }
-                }
-              }
-            }
-          },
-          "4XX": {
-            "description": "Invalid query parameters or error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
+                  "$ref": "#/components/schemas/Transaction"
                 }
               }
             }
@@ -692,12 +608,17 @@
           },
           "medium": {
             "type": "string",
-            "enum": ["mobile money", "orange money"],
+            "enum": ["mobile money", "orange money", "fapshi"],
             "description": "Payment method"
           },
           "serviceName": {
             "type": "string",
             "description": "Name of the service in use"
+          },
+          "transType": {
+            "type": "string",
+            "enum": ["Collection", "Payout"],
+            "description": "Type of transaction"
           },
           "amount": {
             "type": "integer",
@@ -733,6 +654,10 @@
             "type": "string",
             "format": "uri",
             "description": "The webhook you defined for your service"
+          },
+          "reason": {
+            "type": "string",
+            "description": "Typically appears when a payout via fapshi fails"
           },
           "financialTransId": {
             "type": "string",

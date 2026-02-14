@@ -2,6 +2,7 @@
 title: 'Intégration Webhook'
 description: 'Découvrez comment intégrer des webhooks pour recevoir en temps réel les mises à jour du statut des paiements depuis Fapshi.'
 openapi: '/fr/api-reference/openapi.json WEBHOOK /webhook/payment-status'
+playground: 'none'
 keywords: ['webhook', 'notification de paiement', 'webhook fapshi', 'événement de paiement', 'statut de transaction']
 ---
 
@@ -15,6 +16,20 @@ Vous pouvez définir une URL de webhook **par service** dans votre tableau de bo
 
 Le corps de la requête webhook est identique au corps de la réponse retournée par la [requête de statut de paiement](/fr/api-reference/endpoint/payment-status).
 
+## Comment fonctionnent les webhooks
+
+![Schéma de séquence webhook](/images/api-references/webhook-sequence-diagram.png)
+
+1. **Paiement initié** : Votre application externe initie un paiement en appelant l'un des endpoints de paiement Fapshi (par ex. [initiate-pay](/fr/api-reference/endpoint/initiate-pay) ou [direct-pay](/fr/api-reference/endpoint/direct-pay)).
+
+2. **Paiement traité** : Le serveur Fapshi traite la transaction. Cela inclut le flux de paiement, la communication avec les opérateurs et la mise à jour du statut de la transaction.
+
+3. **Webhook envoyé** : Lorsque le statut du paiement passe à SUCCESSFUL, FAILED ou EXPIRED, le serveur Fapshi envoie automatiquement une requête POST à votre URL de webhook avec les détails de la transaction mis à jour.
+
+4. **Webhook reçu** : Votre application reçoit la notification webhook et peut la traiter (par ex. mettre à jour votre base de données, envoyer des notifications, déclencher d'autres flux).
+
 <Note>
-Votre serveur doit répondre rapidement aux requêtes webhook pour éviter les erreurs de timeout. Fapshi n’envoie qu’une seule requête webhook par événement, **même si votre serveur ne répond pas**.
+Votre serveur doit répondre rapidement aux requêtes webhook pour éviter les erreurs de timeout, idéalement avec un code de statut 200. Fapshi n’envoie qu’une seule requête webhook par événement, **même si votre serveur ne répond pas**.
 </Note>
+
+## Format de la requête webhook
