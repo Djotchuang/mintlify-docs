@@ -266,76 +266,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "transId": {
-                      "type": "string",
-                      "description": "Identifiant de la transaction du paiement."
-                    },
-                    "status": {
-                      "type": "string",
-                      "enum": ["EXPIRED"],
-                      "description": "Statut de la transaction"
-                    },
-                    "medium": {
-                      "type": "string",
-                      "enum": ["mobile money", "orange money"],
-                      "description": "Méthode de paiement"
-                    },
-                    "serviceName": {
-                      "type": "string",
-                      "description": "Nom du service utilisé"
-                    },
-                    "amount": {
-                      "type": "integer",
-                      "description": "Montant de la transaction"
-                    },
-                    "revenue": {
-                      "type": "integer",
-                      "description": "Montant reçu après déduction des frais Fapshi"
-                    },
-                    "payerName": {
-                      "type": "string",
-                      "description": "Nom du client"
-                    },
-                    "email": {
-                      "type": "string",
-                      "format": "email",
-                      "description": "Email du client"
-                    },
-                    "redirectUrl": {
-                      "type": "string",
-                      "format": "uri",
-                      "description": "URL de redirection après le paiement"
-                    },
-                    "externalId": {
-                      "type": "string",
-                      "description": "Identifiant de la transaction sur votre application"
-                    },
-                    "userId": {
-                      "type": "string",
-                      "description": "Identifiant du client sur votre application"
-                    },
-                    "webhook": {
-                      "type": "string",
-                      "format": "uri",
-                      "description": "Le webhook que vous avez défini pour votre service"
-                    },
-                    "financialTransId": {
-                      "type": "string",
-                      "description": "Identifiant de la transaction avec l'opérateur de paiement"
-                    },
-                    "dateInitiated": {
-                      "type": "string",
-                      "format": "date",
-                      "description": "Date à laquelle le paiement a été initié"
-                    },
-                    "dateConfirmed": {
-                      "type": "string",
-                      "format": "date",
-                      "description": "Date à laquelle le paiement a été effectué"
-                    }
-                  }
+                  "$ref": "#/components/schemas/Transaction"
                 }
               }
             }
