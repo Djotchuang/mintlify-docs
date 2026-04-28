@@ -2,6 +2,7 @@
 title: 'Webhook Integration'
 description: 'Learn how to integrate webhooks to receive real-time payment status updates from Fapshi.'
 openapi: '/en/api-reference/openapi.json WEBHOOK /webhook/payment-status'
+playground: 'none'
 keywords: ['webhook', 'payment notification', 'fapshi webhook', 'payment event', 'transaction status']
 ---
 
@@ -13,8 +14,22 @@ You can set a webhook URL per service on your Fapshi dashboard. When set, a **PO
 - **FAILED** — when a payment attempt fails (usually on operator networks like MTN Mobile Money or Orange Money)
 - **EXPIRED** — when a payment link expires after 24 hours without successful payment
 
-The body of the webhook request will be the same as the response body returned when [querying a payment status](/en/api-reference/endpoint/payment-status).
+The payload of the webhook request will be the same as the response body returned when [querying a payment status](/en/api-reference/endpoint/payment-status).
+
+## How Webhooks Work
+
+![Webhook Sequence Diagram](/images/api-references/webhook-sequence-diagram.png)
+
+1. **Payment Initiated**: Your external application initiates a payment by calling one of Fapshi's payment endpoints (e.g., [initiate-pay](/en/api-reference/endpoint/initiate-pay) or [direct-pay](/en/api-reference/endpoint/direct-pay)).
+
+2. **Payment Processed**: Fapshi Server processes the payment transaction. This includes handling the payment flow, communicating with payment operators, and updating the transaction status.
+
+3. **Webhook Sent**: When the payment status changes to SUCCESSFUL, FAILED, or EXPIRED, Fapshi Server automatically sends a POST request to your configured webhook URL with the updated transaction details.
+
+4. **Webhook Received**: Your external application receives the webhook notification and can process it accordingly (e.g., update your database, send notifications, trigger other workflows).
 
 <Note> 
-Your server should respond quickly to webhook requests to avoid timeouts. Fapshi sends only one webhook request per event, regardless of whether your server responds or not.
+Your server should respond quickly to webhook requests to avoid timeouts, ideally with a 200 status code. Fapshi sends only one webhook request per event, regardless of whether your server responds or not.
 </Note>
+
+## Webhook Payload Format
