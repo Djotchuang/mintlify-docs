@@ -32,4 +32,10 @@ Le corps de la requête webhook est identique au corps de la réponse retournée
 Votre serveur doit répondre rapidement aux requêtes webhook pour éviter les erreurs de timeout, idéalement avec un code de statut 200. Fapshi n’envoie qu’une seule requête webhook par événement, **même si votre serveur ne répond pas**.
 </Note>
 
+## Sécurité des webhooks
+
+Vous pouvez authentifier l’origine d’une requête webhook en définissant un secret webhook sur le tableau de bord Fapshi. Lorsqu’un secret est configuré, chaque requête webhook inclut un en-tête appelé `x-wh-secret` dont la valeur est le secret défini sur le tableau de bord. Comparer la valeur de cet en-tête au secret que vous avez configuré permet de vérifier si la requête provient de Fapshi.
+
+Par mesure de sécurité, le tableau de bord ne permet pas de consulter ni de savoir si un secret webhook a déjà été défini pour un service.
+
 ## Format de la requête webhook

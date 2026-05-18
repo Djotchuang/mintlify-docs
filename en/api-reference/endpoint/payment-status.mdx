@@ -22,3 +22,9 @@ Check the status of a payment by transaction ID.
 | EXPIRED    | This means 24 hours have passed since the payment link was generated and no successful payment attempt was made in that time interval OR the link got [manually expired](/en/api-reference/endpoint/expire-pay) to prevent payment.                                      |
 
 <Note>No payments can be made after the status is SUCCESSFUL or EXPIRED.</Note>
+
+<Note>
+For a given transaction ID, you can make at most **6 requests per minute**. Exceeding this limit returns a **429** response.
+
+It is generally better to rely on [webhook notifications](/en/api-reference/endpoint/webhook) to know when a payment status changes, rather than polling this endpoint.
+</Note>

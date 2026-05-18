@@ -32,4 +32,10 @@ The payload of the webhook request will be the same as the response body returne
 Your server should respond quickly to webhook requests to avoid timeouts, ideally with a 200 status code. Fapshi sends only one webhook request per event, regardless of whether your server responds or not.
 </Note>
 
+## Webhook Security
+
+You can authenticate the origin of a webhook request by setting a webhook secret on the Fapshi dashboard. When a secret is configured, every webhook request includes a header called `x-wh-secret` whose value is the secret you set on the dashboard. Comparing the value in this header to the secret you configured tells you whether the request came from Fapshi.
+
+As a security measure, the dashboard does not let you view or determine whether a webhook secret has already been set for a service.
+
 ## Webhook Payload Format

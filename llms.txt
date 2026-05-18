@@ -1,0 +1,53 @@
+# Fapshi Documentation
+
+> Fapshi API documentation for collecting payments and disbursing funds in Cameroon (Mobile Money, Orange Money). Use this file to find the right pages when integrating Fapshi programmatically.
+
+Important notes for integration:
+
+- Authenticate every request with `apiuser` and `apikey` HTTP headers.
+- **Sandbox base URL:** `https://sandbox.fapshi.com` — **Live base URL:** `https://live.fapshi.com`. Use separate credentials per environment.
+- Request bodies must be JSON. **GET requests must not include a body.**
+- Successful responses use HTTP **200**. Common errors: **400**, **403**, **404**, **429**.
+- Prefer **webhooks** over polling [payment status](https://docs.fapshi.com/en/api-reference/endpoint/payment-status.md): max **6 requests per minute** per `transId` (returns **429** if exceeded).
+- **IP whitelisting** (dashboard) applies only to transaction creation: initiate-pay, direct-pay, payout. Non-whitelisted IPs get **403** even with valid credentials.
+- **Webhook security:** set a webhook secret on the dashboard; requests include `x-wh-secret` matching your secret. The dashboard cannot show whether a secret is already set.
+- Official SDKs: https://github.com/Fapshi/SDKs
+
+## Getting Started
+
+- [API Getting Started](https://docs.fapshi.com/en/api-reference/getting-started.md): Overview, prerequisites, and what the API can do
+- [Create a Service](https://docs.fapshi.com/en/api-reference/create-a-service.md): Create a service on the dashboard to obtain API credentials
+- [API Credentials](https://docs.fapshi.com/en/api-reference/preliminary-knowledge/api-credentials.md): `apiuser` and `apikey` header authentication
+- [Live vs Sandbox Environment](https://docs.fapshi.com/en/api-reference/preliminary-knowledge/environment.md): Base URLs, test phone numbers, switching to production
+- [Request Status](https://docs.fapshi.com/en/api-reference/preliminary-knowledge/request-status.md): Response codes, formatting rules, IP whitelisting
+
+## Payment Endpoints
+
+- [Generate a Payment Link (initiate-pay)](https://docs.fapshi.com/en/api-reference/endpoint/initiate-pay.md): Hosted checkout page for customers
+- [Direct Pay](https://docs.fapshi.com/en/api-reference/endpoint/direct-pay.md): Send payment request to a user's mobile device
+- [Get Payment Transaction Status](https://docs.fapshi.com/en/api-reference/endpoint/payment-status.md): Poll status by `transId` (rate-limited; prefer webhooks)
+- [Expire Payment Link](https://docs.fapshi.com/en/api-reference/endpoint/expire-pay.md): Invalidate a payment link (initiate-pay only)
+
+## Disbursement & Account
+
+- [Make a Payout](https://docs.fapshi.com/en/api-reference/endpoint/payout.md): Send money to mobile money, Orange Money, or Fapshi accounts
+- [Get Balance](https://docs.fapshi.com/en/api-reference/endpoint/balance.md): Current service account balance
+- [Search Transactions](https://docs.fapshi.com/en/api-reference/endpoint/search-transactions.md): Filter transactions by status, date, amount, etc.
+- [Transactions by User](https://docs.fapshi.com/en/api-reference/endpoint/transaction-by-user.md): List transactions for a `userId`
+
+## Webhooks
+
+- [Webhook Integration](https://docs.fapshi.com/en/api-reference/endpoint/webhook.md): Real-time notifications on SUCCESSFUL, FAILED, EXPIRED; payload format and `x-wh-secret` security
+
+## OpenAPI Specs
+
+- [OpenAPI (English)](https://docs.fapshi.com/en/api-reference/openapi.json): Machine-readable API specification (sandbox server URL)
+- [OpenAPI (French)](https://docs.fapshi.com/fr/api-reference/openapi.json): French-language OpenAPI spec
+
+## Optional
+
+- [Documentation home](https://docs.fapshi.com/en/index.md): Product overview and guides index
+- [Activate account](https://docs.fapshi.com/en/guides/getting-started/activate-account.md): Required before live API use
+- [French API Getting Started](https://docs.fapshi.com/fr/api-reference/getting-started.md): French version of API getting started
+- [Help & Support](https://fapshi.com/en/help-and-support): Knowledge base and support
+- [Developer Slack community](https://fapshicommunity.slack.com/archives/C034Q50QB6U): Community support channel
