@@ -31,6 +31,7 @@ En cas d’erreur, Fapshi renverra un **code d’erreur HTTP 4XX**, selon la nat
 - **400** – Requête incorrecte (paramètres manquants ou mal formés)  
 - **403** – Accès interdit (identifiants invalides)  
 - **404** – Introuvable (ressource inexistante)  
+- **429** – Trop de requêtes (limite de débit dépassée)
 
 Le corps de la réponse contiendra toujours un champ `message` fournissant une explication claire du motif de l’échec.
 
@@ -43,6 +44,20 @@ Le corps de la réponse contiendra toujours un champ `message` fournissant une e
 ```
 
 <Warning> Assurez-vous de toujours lire le champ `message` de la réponse afin d’identifier la cause de l’échec et d’orienter votre débogage. </Warning>
+
+## Liste blanche IP
+
+Si une ou plusieurs adresses IP sont ajoutées à la liste blanche sur le tableau de bord Fapshi, seuls les serveurs utilisant ces adresses IP peuvent effectuer des requêtes de création de transaction :
+
+- [Générer un lien de paiement](/fr/api-reference/endpoint/initiate-pay)
+- [Initier un paiement direct](/fr/api-reference/endpoint/direct-pay)
+- [Effectuer un retrait](/fr/api-reference/endpoint/payout)
+
+Lorsqu’une ou plusieurs adresses IP sont en liste blanche, une requête de création de transaction provenant d’un serveur dont l’adresse IP n’est pas autorisée reçoit une réponse **403**, même si vos identifiants API sont valides. Cette règle s’applique uniquement aux endpoints de création de transaction listés ci-dessus ; les autres requêtes API ne sont pas soumises à la liste blanche IP.
+
+Si l’adresse IP de votre serveur change fréquemment, il est préférable de ne pas ajouter d’adresse IP spécifique à la liste blanche.
+
+La liste blanche IP est une mesure de sécurité qui empêche des serveurs non reconnus de créer des transactions avec vos identifiants API.
 
 ## 🔁 Règles de Formatage des Requêtes
 

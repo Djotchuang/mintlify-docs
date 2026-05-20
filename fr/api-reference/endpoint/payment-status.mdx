@@ -22,3 +22,9 @@ Vérifiez le statut d’un paiement via son identifiant de transaction.
 | EXPIRED    | Cela signifie que 24 heures se sont écoulées depuis la génération du lien de paiement sans qu’aucune tentative de paiement réussie n’ait été effectuée, OU que le lien a été [expiré manuellement](/fr/api-reference/endpoint/expire-pay) pour empêcher le paiement. |
 
 <Note>Aucun paiement ne peut être effectué une fois le statut SUCCESSFUL ou EXPIRED.</Note>
+
+<Note>
+Pour un identifiant de transaction donné, vous pouvez effectuer au maximum **6 requêtes par minute**. Au-delà de cette limite, l’API renvoie une réponse **429**.
+
+Il est généralement préférable de s’appuyer sur les [notifications webhook](/fr/api-reference/endpoint/webhook) pour savoir quand le statut d’un paiement change, plutôt que d’interroger cet endpoint en boucle.
+</Note>
