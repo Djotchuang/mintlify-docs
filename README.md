@@ -13,3 +13,7 @@ Run the following command at the root of the project (where docs.json is)
 ```
 npx mint dev
 ```
+
+## TODO
+
+- Add topup under managing payments in guides
