@@ -12,6 +12,12 @@ keywords:
 openapi: "/fr/api-reference/openapi.json POST /direct-pay"
 ---
 
+<Danger>
+  Le paiement direct est désactivé par défaut dans l’environnement Live. Suivez les
+  étapes du guide [Activer le paiement direct sur votre API Fapshi en mode Live](https://www.fapshi.com/fr/aide-et-support/how-to-activate-direct-pay-for-your-fapshi-api)
+  pour activer le paiement direct en mode live.
+</Danger>
+
 ## Endpoint
 
 `POST /direct-pay`
@@ -23,11 +29,7 @@ Envoyez une demande de paiement directement sur le mobile d’un utilisateur. Vo
   conséquent, leur état final est soit **SUCCESSFUL** soit **FAILED**.
 </Note>
 
-<Warning>
-  Le paiement direct est désactivé par défaut dans l’environnement Live. Suivez les
-  étapes du guide [Activer le paiement direct sur votre API Fapshi en mode Live](https://www.fapshi.com/fr/aide-et-support/how-to-activate-direct-pay-for-your-fapshi-api)
-  pour activer le paiement direct en mode live.
-</Warning>
+
 <Danger>
   Manipulez ce point de terminaison avec précaution ; toute mauvaise utilisation
   peut entraîner la suspension de votre compte.
