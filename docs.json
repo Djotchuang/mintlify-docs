@@ -101,6 +101,7 @@
                 "pages": [
                   "en/guides/managing-payments/balances",
                   "en/guides/managing-payments/payouts",
+                  "en/guides/managing-payments/topups",
                   "en/guides/managing-payments/bulk-payments"
                 ]
               }
@@ -211,6 +212,7 @@
                 "pages": [
                   "fr/guides/managing-payments/balances",
                   "fr/guides/managing-payments/payouts",
+                  "fr/guides/managing-payments/topups",
                   "fr/guides/managing-payments/bulk-payments"
                 ]
               }
