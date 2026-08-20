@@ -14,7 +14,7 @@ keywords:
 
 ---
 
-To use our API endpoints, you’ll need to [create a service](https://www.fapshi.com/en/help-and-support/how-to-create-a-service-to-get-api-credentials). A service is a representation of the service or platform you want to use to collect or disburse payments. You can either create two kinds of service:
+To use our API endpoints, you’ll need to [create a service](https://www.fapshi.com/en/help-and-support/how-to-create-a-service-to-get-api-credentials). A service is a representation of the service or platform you want to use to collect or disburse payments. You can create two kinds of service:
 
 1. **Collection Service**: This will be used to collect money on your platform. All funds will be reflected in this service on your dashboard.
 2. **Disbursement Service**: You can use this to issue payouts programmatically on your platform.
@@ -33,23 +33,19 @@ To use our API endpoints, you’ll need to [create a service](https://www.fapshi
 
 ## How to Create a Service
 
-1. Log into your dashboard and click the **Merchants dropdown** on the extreme left of the menu bar.
+1. Log into your dashboard and click **Developers** on the extreme bottom left of the screen.
 
 2. Click the "New Service" button.
 
 3. Fill in the required details and confirm.
 
 <Info>
-  - The service name is the name of your website or app. - The domain name can
+  The service name is the name of your website or app. - The domain name can
   be what you have already bought or what you intend to buy. i.e. You must not
-  own it yet. Note that you cannot use **fapshi.com** or **iventily.com** as
-  your domain name, since these are Fapshi domains.
+  own it yet. Note that you cannot use **fapshi.com** as
+  your domain name, since this is the Fapshi domain.
 </Info>
 
-4. Your **apikey** and **apiuser** will be generated and will appear at the bottom on the dashboard page. Copy and save it judiciously.
+4. Once the service is created, open it. Your `apiuser` and `apikey` for that service will be displayed; **Sandbox** under **Sandbox** and **Live** under **API**. Copy these carefully, especially the `apikey` because they are sensitive.
 
-<Warning>
-  Make sure you keep your API keys private. Never save API keys in your code or
-  on Github. Instead, use environment files and, for an extra level of security,
-  rotate API keys regularly.
-</Warning>
+5. Store the credentials securely (e.g., in an environment file or secure vault). Do not hard-code or commit them in public repos. Also, rotate the keys if necessary.

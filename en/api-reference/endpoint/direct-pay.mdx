@@ -12,6 +12,12 @@ keywords:
 openapi: "/en/api-reference/openapi.json POST /direct-pay"
 ---
 
+<Danger>
+  Direct pay is disabled by default on live environment; Follow the steps in the
+  [Activate Direct pay on your Live Fapshi API guide](https://www.fapshi.com/en/help-and-support/how-to-activate-direct-pay-for-your-fapshi-api)
+  to enable direct pay in live mode.
+</Danger>
+
 ## Endpoint
 
 `POST /direct-pay`
@@ -22,11 +28,6 @@ Send a payment request directly to a user's mobile device. You are responsible f
   Direct payment transactions cannot and do not expire. Consequently, their final state is either **SUCCESSFUL** or **FAILED**.
 </Note>
 
-<Warning>
-  Direct pay is disabled by default on live environment; Follow the steps in the
-  [Activate Direct pay on your Live Fapshi API guide](https://www.fapshi.com/en/help-and-support/how-to-activate-direct-pay-for-your-fapshi-api)
-  to enable direct pay in live mode.
-</Warning>
 <Danger>
   Handle this endpoint with care; misuse can result in account suspension.
 </Danger>
