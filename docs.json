@@ -169,10 +169,10 @@
               "description": "Join our community of developers."
             },
             {
-              "dropdown": "WhatsApp Group",
-              "href": "https://chat.whatsapp.com/FQiOmomCTCKLdyaWlmvHrd",
+              "dropdown": "WhatsApp Channel",
+              "href": "https://whatsapp.com/channel/0029Vb8kgPt4NViomR6ko51S",
               "icon": "whatsapp",
-              "description": "Join our WhatsApp group."
+              "description": "Follow our WhatsApp channel."
             }
           ]
         }
@@ -280,10 +280,10 @@
               "description": "Rejoignez notre communauté de développeurs."
             },
             {
-              "dropdown": "Groupe WhatsApp",
-              "href": "https://chat.whatsapp.com/FQiOmomCTCKLdyaWlmvHrd",
+              "dropdown": "Canal WhatsApp",
+              "href": "https://whatsapp.com/channel/0029Vb8kgPt4NViomR6ko51S",
               "icon": "whatsapp",
-              "description": "Rejoignez notre groupe WhatsApp."
+              "description": "Suivez notre canal WhatsApp."
             }
           ]
         }
